@@ -1,0 +1,598 @@
+/* ==============================
+   Sidebar Card
+================================ */
+.sidebar {
+  background: #ffffff;
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.12);
+  width: 100%;
+  max-width: 330px;      /* max width on large screens */
+  position: relative;
+  max-height: 1250px;
+  overflow-y: auto;
+}
+
+/* ==============================
+   Banner
+================================ */
+.sidebar-banner {
+  height: 140px;
+  background: linear-gradient(135deg, #0f172a, #1b232f);
+  position: relative;
+}
+
+
+
+/* Banner text */
+.cover-text {
+  position: absolute;
+  bottom: 12%;
+  left: 5%;
+  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.92);
+  font-weight: 700;
+  letter-spacing: 1px;
+  padding: 6px 10px;
+  border-radius: 10px;
+}
+
+/* ==============================
+   Profile Image
+================================ */
+.profile-img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 4px solid #ffffff;
+  position: absolute;
+  top: 70px;
+  left: 100px;
+  object-fit: cover;
+  z-index: 10;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* ==============================
+   Content
+================================ */
+.sidebar-content {
+  padding: 60px 16px 16px; /* <-- dagdag 10px space sa taas */
+}
+
+
+/* Title (IMPROVED SPACING) */
+.sidebar h2 {
+  font-size: 1.22rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0 4px;   /* <-- NEW spacing */
+  line-height: 1.3;     /* <-- mas readable */
+}
+
+/* Verified icon */
+.verified {
+  color: #3b82f6;
+}
+
+.location {
+  font-size: 0.8rem;
+  color: #6b7280;
+  margin: 8px 0 14px;  /* <-- mas pantay na spacing */
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+
+/* Primary Button */
+.btn-primary {
+  width: 100%;
+  padding: 10px;
+  background: linear-gradient(135deg, #111827, #000);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Secondary Buttons */
+.btn-row {
+  display: flex;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.btn-secondary {
+  flex: 1;
+  padding: 8px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #fff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, background 0.2s;
+}
+
+.btn-secondary:hover {
+  transform: translateY(-2px);
+  background: #f9fafb;
+}
+
+/* ==============================
+   SUMMARY
+================================ */
+.summary-header {
+  margin-top: 26px; /* mas malinaw na separation */
+}
+
+.summary-header h3 {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* increased gap between icon and text */
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 8px; /* space below header before summary cards */
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+  margin-top: 8px; /* small gap below header for breathing room */
+}
+
+.summary div {
+  background: #f7f7f7;
+  border-radius: 12px;
+  padding: 15px;
+  text-align: center;
+  border: 1px solid #1f2937;
+}
+
+.summary h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.summary span {
+  font-size: 0.7rem;
+  color: #6b7280;
+}
+
+
+/* Status */
+.status {
+  margin-top: 12px;
+  background: #ecfdf5;
+  color: #065f46;
+  font-size: 0.75rem;
+  padding: 8px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: 600;
+  border: 1px solid #1f2937;
+}
+
+/* Dark mode adjustments */
+.sidebar.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+}
+
+.sidebar.dark .sidebar-banner {
+  background: linear-gradient(135deg, #111827, #1b232f);
+}
+
+.sidebar.dark .cover-text {
+  background: rgba(255, 255, 255, 0.15);
+  color: #f4f6f8;
+}
+
+.sidebar.dark h2,
+.sidebar.dark .location,
+.sidebar.dark .summary span,
+.sidebar.dark .status {
+  color: #e5e7eb;
+}
+
+.sidebar.dark .btn-primary {
+  background: linear-gradient(135deg, #e5e7eb, #cbd5e1);
+  color: #0f172a;
+}
+
+.sidebar.dark .btn-secondary {
+  background: #1f2937;
+  border: 1px solid #334155;
+  color: #e5e7eb;
+}
+
+.sidebar.dark .summary div {
+  background: #1f2937;
+  border: 1px solid #ffffff;
+}
+
+.sidebar.dark .status {
+  background: #0f172a;
+  border: 1px solid #ffffff;
+}
+
+/* ==============================
+   Dark Mode Banner Fix
+================================ */
+.sidebar.dark .sidebar-banner {
+  background: #ffffff; /* banner becomes white in dark mode */
+}
+
+/* ==============================
+   EXTRA SECTIONS
+================================ */
+.extra-section {
+  background: #f7f7f7;
+  padding: 14px;
+  border-radius: 14px;
+  margin-top: 10px;   /* ⬆️ inangat ng konti */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+
+
+.extra-section:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.extra-section h3 {
+  font-size: 0.85rem;
+  font-weight: 700;
+  margin-bottom: 10px; /* ⬆️ mas malinaw na gap sa text */
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+
+.extra-section p {
+  font-size: 0.75rem;
+  color: #4b5563;
+  line-height: 1.5;
+  margin-top: 4px;
+}
+
+.sidebar.dark .extra-section {
+  background: #1f2937;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+}
+
+.sidebar.dark .extra-section h3 {
+  color: #f9fafb;
+}
+
+.sidebar.dark .extra-section p {
+  color: #e5e7eb;
+}
+
+/* ==============================
+   SOCIAL & CONTACT
+================================ */
+.social-links,
+.contact-info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.social-links li,
+.contact-info li {
+  font-size: 0.75rem;
+  color: #4b5563;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.social-links li:hover,
+.contact-info li:hover {
+  background: #e5e7eb;
+}
+
+.sidebar.dark .social-links li,
+.sidebar.dark .contact-info li {
+  color: #f9fafb;
+}
+
+.sidebar.dark .social-links li:hover,
+.sidebar.dark .contact-info li:hover {
+  background: #374151;
+}
+
+.social-links li a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.social-links li a:hover {
+  color: #3b82f6;
+}
+
+/* ==============================
+   RESPONSIVE BREAKPOINTS
+================================ */
+@media (max-width: 1024px) {
+  .sidebar {
+    max-width: 280px;
+  }
+  .cover-text {
+    font-size: 0.85rem;
+    bottom: 10%;
+    left: 5%;
+  }
+  .profile-img {
+    width: 90px;
+    height: 90px;
+    top: 55px;
+  }
+  .sidebar-content {
+    padding: 90px 12px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .sidebar {
+    max-width: 100%;
+    margin: 0 auto;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .profile-img {
+    width: 80px;
+    height: 80px;
+    top: 50px;
+    left: 16px;
+  }
+  .cover-text {
+    font-size: 0.8rem;
+    bottom: 8%;
+    left: 4%;
+  }
+  .btn-primary,
+  .btn-secondary {
+    font-size: 0.75rem;
+    padding: 8px;
+  }
+  .summary {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+  .extra-section {
+    padding: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .sidebar-content {
+    padding: 80px 8px 8px;
+  }
+  .profile-img {
+    width: 70px;
+    height: 70px;
+    top: 45px;
+  }
+  .cover-text {
+    font-size: 0.75rem;
+    bottom: 6%;
+    left: 4%;
+  }
+  .summary {
+    grid-template-columns: 1fr;
+  }
+}
+/* ==============================
+   DARK MODE BUTTON
+================================ */
+.dark-mode-btn {
+  position: absolute;
+  top: 60px;         /* aligned near top of sidebar */
+  right: 16px;       /* aligned to the right inside sidebar */
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  background: #111827;  /* default dark button */
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+}
+
+.dark-mode-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.35);
+}
+
+/* DARK MODE COLORS */
+.sidebar.dark .dark-mode-btn {
+  background: #e5e7eb;  /* light button in dark mode */
+  color: #0f172a;       /* icon/text dark */
+}
+
+/* ==============================
+   RESPONSIVE DARK MODE BUTTON
+================================ */
+@media (max-width: 1024px) {
+  .dark-mode-btn {
+    top: 50px;
+    width: 32px;
+    height: 32px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dark-mode-btn {
+    top: 45px;
+    right: 12px;
+    width: 30px;
+    height: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .dark-mode-btn {
+    top: 40px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+  }
+}
+/* Center the name only */
+.sidebar-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px; /* space between name and verified icon */
+}
+
+/* Center the location below the name */
+.location.centered {
+  justify-content: center;
+}
+/* ========== MODAL DESIGN ========== */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+
+}
+
+.modal-content {
+  background: white;
+  padding: 22px;
+  border-radius: 18px;
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0 12px 35px rgba(0,0,0,0.25);
+  animation: modalPop 0.25s ease-out;
+}
+
+/* Dark mode modal */
+.modal-content.dark {
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+/* Coming Soon badge */
+.modal-badge {
+  display: inline-block;
+  background: #ecfdf5;
+  color: #065f46;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  margin-bottom: 10px;
+}
+
+/* Title */
+.modal-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin: 6px 0;
+}
+
+/* Description */
+.modal-text {
+  font-size: 0.8rem;
+  color: #4b5563;
+  margin-bottom: 12px;
+}
+
+/* Dark mode text */
+.modal-content.dark .modal-text {
+  color: #e5e7eb;
+}
+
+/* Buttons container */
+.modal-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Download button */
+.btn-download {
+  text-decoration: none;
+  text-align: center;
+  padding: 9px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #2563eb, #1d4ed8);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-download:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+/* Close button (X) */
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* Modal pop animation */
+@keyframes modalPop {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}

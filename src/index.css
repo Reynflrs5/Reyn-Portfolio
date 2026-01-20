@@ -11,3 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+@media (max-width: 1024px) {
+  .profile-page {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    text-align: center;
+  }
+
+  .profile-img {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}

@@ -1,0 +1,196 @@
+/* ==============================
+   TECH CONTAINER
+================================ */
+.tech-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 20px;
+  padding: 12px 0;
+}
+
+@media (max-width: 1024px) {
+  .tech-container {
+    justify-content: center;
+  }
+}
+
+/* ==============================
+   TECH CARD
+================================ */
+.tech-card {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 24px;
+  padding: 28px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+  flex: 1 1 300px;
+  max-width: 500px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+}
+
+@media (max-width: 768px) {
+  .tech-card {
+    flex: 1 1 90%;
+    max-width: 90%;
+    padding: 20px;
+  }
+}
+
+/* ==============================
+   HEADER
+================================ */
+.tech-header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 16px;
+  position: relative; /* for absolute dropdown */
+}
+
+.tech-card:not(.dark) .tech-header h3 {
+  display: flex;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 700;
+  color: #111827;
+}
+
+.header-icon {
+  margin-right: 8px;
+  font-size: 24px;
+  color: #111827;
+}
+
+/* ==============================
+   DROPDOWN MENU
+================================ */
+.dropdown-tab {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  display: inline-block;
+  z-index: 20;
+}
+
+.dropdown-tab button {
+  background: transparent;
+  border: 1px solid #e5e7eb;
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.dropdown-tab button:hover {
+  background: #e5e7eb;
+}
+
+.tech-card.dark .dropdown-tab button {
+  background: #1f2937;
+  border: 1px solid #334155;
+  color: #e5e7eb;
+}
+
+.tech-card.dark .dropdown-tab button:hover {
+  background: #334155;
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 42px;
+  right: 0;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  z-index: 10;
+  min-width: 160px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tech-card.dark .dropdown-menu {
+  background: #1f2937;
+  border: 1px solid #334155;
+}
+
+.dropdown-item {
+  padding: 6px 12px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 12px;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.dropdown-item:hover {
+  background: #f3f4f6;
+}
+
+.tech-card.dark .dropdown-item:hover {
+  background: #334155;
+}
+
+/* ==============================
+   TECH LIST
+================================ */
+.tech-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.tech-item {
+  background: #f3f4f6;
+  color: #111827;
+  padding: 10px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  border: 1px solid #e5e7eb;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.tech-item:hover {
+  transform: translateY(-4px) scale(1.05);
+  background: #e5e7eb;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* ==============================
+   DARK MODE
+================================ */
+.tech-card.dark {
+  background: rgba(15, 23, 42, 0.95);
+  color: #e5e7eb;
+  border: 1px solid #1f2937;
+}
+
+.tech-card.dark .tech-header h3 {
+  -webkit-text-fill-color: #e5e7eb;
+}
+
+.tech-card.dark .header-icon {
+  color: #e5e7eb;
+}
+
+.tech-card.dark .tech-item {
+  background: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid #334155;
+}
+
+.tech-card.dark .tech-item:hover {
+  background: #2563eb;
+  color: #ffffff;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+}

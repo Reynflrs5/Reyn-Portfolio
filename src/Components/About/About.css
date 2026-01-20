@@ -1,0 +1,248 @@
+/* =========================
+   ABOUT CARD BASE
+=========================== */
+.about-card {
+  background: #ffffff;
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.about-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   ABOUT HEADER
+=========================== */
+.about-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+.about-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+  color: #111827; /* light mode default */
+}
+
+.about-icon {
+  font-size: 20px;
+  color: #3b82f6;
+  background: #e0f2fe;
+  padding: 6px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.about-card:hover .about-icon {
+  transform: scale(1.1);
+}
+
+/* =========================
+   ABOUT TEXT
+=========================== */
+.about-text {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+/* =========================
+   EXPERTISE HEADER
+=========================== */
+.expertise-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.expertise-header h4 {
+  font-size: 14px;
+  font-weight: 700;
+  margin: 0;
+  color: #111827;
+}
+
+.expertise-icon {
+  font-size: 16px;
+  color: #10b981;
+  background: #d1fae5;
+  padding: 5px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.about-card:hover .expertise-icon {
+  transform: scale(1.1);
+}
+
+/* =========================
+   TAGS
+=========================== */
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tags span {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 600;
+  background: #f3f4f6;
+  color: #111827;
+  border: 1px solid #e5e7eb;
+  transition: all 0.3s ease;
+  cursor: default;
+}
+
+.tags span:hover {
+  transform: translateY(-2px);
+  background: #e0f2fe;
+  border-color: #3b82f6;
+  color: #111827;
+}
+
+/* =========================
+   DARK MODE
+=========================== */
+.about-card.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+}
+
+.about-card.dark .about-header h3 {
+  color: #f9fafb;
+}
+
+.about-card.dark .about-text {
+  color: #cbd5e1;
+}
+
+.about-card.dark .about-icon {
+  color: #60a5fa;
+  background: #1e293b;
+}
+
+.about-card.dark .expertise-icon {
+  color: #34d399;
+  background: #1e293b;
+}
+
+.about-card.dark .expertise-header h4 {
+  color: #e5e7eb;
+}
+
+.about-card.dark .tags span {
+  background: #1f2937;
+  color: #e5e7eb;
+  border: 1px solid #374151;
+}
+
+.about-card.dark .tags span:hover {
+  background: #2563eb;
+  border-color: #3b82f6;
+  color: #ffffff;
+}
+
+/* =========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1024px) {
+  .about-card {
+    padding: 20px;
+  }
+  .about-header h3 {
+    font-size: 16px;
+  }
+  .about-icon {
+    font-size: 18px;
+    padding: 5px;
+  }
+  .about-text {
+    font-size: 13px;
+  }
+  .expertise-header h4 {
+    font-size: 13px;
+  }
+  .expertise-icon {
+    font-size: 14px;
+    padding: 4px;
+  }
+  .tags span {
+    font-size: 11px;
+    padding: 6px 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    padding: 18px;
+  }
+  .about-header {
+    gap: 10px;
+  }
+  .about-header h3 {
+    font-size: 15px;
+  }
+  .about-icon {
+    font-size: 16px;
+    padding: 4px;
+  }
+  .about-text {
+    font-size: 12px;
+  }
+  .expertise-header h4 {
+    font-size: 12px;
+  }
+  .expertise-icon {
+    font-size: 14px;
+    padding: 3px;
+  }
+  .tags span {
+    font-size: 10px;
+    padding: 5px 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-card {
+    padding: 14px;
+  }
+  .about-header {
+    gap: 8px;
+  }
+  .about-header h3 {
+    font-size: 14px;
+  }
+  .about-icon {
+    font-size: 14px;
+    padding: 3px;
+  }
+  .about-text {
+    font-size: 11px;
+  }
+  .expertise-header h4 {
+    font-size: 11px;
+  }
+  .expertise-icon {
+    font-size: 12px;
+    padding: 2px;
+  }
+  .tags span {
+    font-size: 9px;
+    padding: 4px 8px;
+  }
+}

@@ -1,0 +1,244 @@
+/* =========================
+   EXPERIENCE CARD BASE
+=========================== */
+.experience-card {
+  background: #ffffff;
+  border-radius: 22px;
+  padding: 22px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+/* Header */
+.experience-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+
+.experience-header h3 {
+  font-size: 18px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.experience-icon {
+  font-size: 18px;
+  color: #111827;
+}
+
+/* Timeline */
+.timeline {
+  position: relative;
+  padding-left: 18px;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  left: 10px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #e5e7eb;
+  border-radius: 999px;
+}
+
+.timeline-item {
+  display: flex;
+  gap: 14px;
+  margin-bottom: 18px;
+  padding: 14px 12px;
+  border-radius: 18px;
+  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+  cursor: pointer;
+}
+
+.timeline-item:hover {
+  transform: translateY(-4px);
+  background: #f9fafb;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.08);
+}
+
+.timeline-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #111827;
+  box-shadow: 0 0 14px rgba(0, 0, 0, 0.18);
+  margin-top: 4px;
+}
+
+.timeline-content {
+  padding-top: 2px;
+}
+
+.timeline-top {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.timeline-icon {
+  font-size: 14px;
+  color: #6b7280;
+}
+
+.timeline-year {
+  font-size: 12px;
+  font-weight: 700;
+  color: #111827;
+  background: #f3f4f6;
+  padding: 6px 10px;
+  border-radius: 999px;
+}
+
+.timeline-content h4 {
+  margin: 8px 0 4px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.timeline-content p {
+  margin: 0;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+/* =========================
+   DARK MODE
+=========================== */
+.experience-card.dark {
+  background: #0f172a;
+  color: #e5e7eb;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.experience-card.dark .timeline::before {
+  background: #334155;
+}
+
+.experience-card.dark .timeline-item:hover {
+  background: #1f2937;
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+}
+
+.experience-card.dark .timeline-dot {
+  background: #e5e7eb;
+  box-shadow: 0 0 14px rgba(229, 231, 235, 0.5);
+}
+
+.experience-card.dark .timeline-year {
+  background: #1f2937;
+  color: #e5e7eb;
+}
+
+.experience-card.dark .timeline-content p,
+.experience-card.dark .timeline-icon {
+  color: #cbd5e1;
+}
+
+.experience-card.dark .experience-icon {
+  color: #e5e7eb;
+}
+
+/* =========================
+   RESPONSIVE
+=========================== */
+@media (max-width: 1024px) {
+  .experience-card {
+    padding: 18px;
+  }
+  .experience-header h3 {
+    font-size: 16px;
+  }
+  .experience-icon {
+    font-size: 16px;
+  }
+  .timeline {
+    padding-left: 14px;
+  }
+  .timeline-dot {
+    width: 12px;
+    height: 12px;
+  }
+  .timeline-year {
+    font-size: 11px;
+    padding: 5px 8px;
+  }
+  .timeline-content h4 {
+    font-size: 13px;
+  }
+  .timeline-content p {
+    font-size: 12px;
+  }
+  .timeline-icon {
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 768px) {
+  .experience-card {
+    padding: 16px;
+  }
+  .timeline {
+    padding-left: 12px;
+  }
+  .timeline-item {
+    gap: 10px;
+    padding: 12px 10px;
+  }
+  .timeline-dot {
+    width: 10px;
+    height: 10px;
+  }
+  .timeline-year {
+    font-size: 10px;
+    padding: 4px 6px;
+  }
+  .timeline-content h4 {
+    font-size: 12px;
+  }
+  .timeline-content p {
+    font-size: 11px;
+  }
+  .timeline-icon {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .experience-card {
+    padding: 14px;
+  }
+  .timeline {
+    padding-left: 10px;
+  }
+  .timeline-item {
+    gap: 8px;
+    padding: 10px 8px;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .timeline-dot {
+    width: 8px;
+    height: 8px;
+  }
+  .timeline-year {
+    font-size: 9px;
+    padding: 3px 6px;
+  }
+  .timeline-content h4 {
+    font-size: 11px;
+  }
+  .timeline-content p {
+    font-size: 10px;
+  }
+  .timeline-icon {
+    font-size: 10px;
+  }
+}
