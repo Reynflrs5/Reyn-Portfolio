@@ -10,8 +10,9 @@ import {
   FaHtml5, 
   FaJs, 
   FaReact, 
-  FaServer 
-} from "react-icons/fa";
+  FaServer, 
+  FaVial 
+} from "react-icons/fa"; // We'll use FaReact for React and custom icon for Vite if needed
 
 export default function Projects({ darkMode }) {
   const [openModal, setOpenModal] = useState(false);
@@ -19,15 +20,13 @@ export default function Projects({ darkMode }) {
 
   const projects = [
     {
-      name: "Lifeline Medical Supply",
-      desc: "Medical Supply Management System",
+      name: "GWA Calculator",
+      desc: "A calculator to compute your General Weighted Average",
       tech: [
-        <FaMobileAlt key="1" color="#00D1FF" />,
-        <FaCss3Alt key="2" color="#1572B6" />,
-        <FaNodeJs key="3" color="#3C873A" />,
-        <FaDatabase key="4" color="#4479A1" />,
+        <FaReact key="1" color="#61DAFB" />, // React
+        <FaVial key="2" color="#646CFF" />,  // Using FaVial as a placeholder for Vite
       ],
-      link: null,
+      link: "https://gwa-calculator-reyn.vercel.app/",
     },
     {
       name: "Lifeline Web Promotion",
