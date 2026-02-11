@@ -6,14 +6,14 @@ import Projects from "../Components/Projects/Projects";
 import TechStack from "../Components/TechStack/TechStack";
 import Certifications from "../Components/Certifications/Certifications";
 
-import Modal from "../Components/Modal"; // <-- add this
+import Modal from "../Components/Modal";
+import Chatbot from "../Components/Chatbot/Chatbot";
 
 import "./Profile.css";
 
 export default function Profile() {
   const [darkMode, setDarkMode] = useState(false);
 
-  // Modal State
   const [openModal, setOpenModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -46,6 +46,9 @@ export default function Profile() {
         project={selectedProject}
         darkMode={darkMode}
       />
+
+      {/* CHATBOT */}
+      <Chatbot darkMode={darkMode} />
     </div>
   );
 }

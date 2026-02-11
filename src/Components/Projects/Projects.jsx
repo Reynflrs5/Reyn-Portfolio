@@ -3,7 +3,6 @@ import { FaProjectDiagram } from "react-icons/fa";
 import Modal from "../../Components/Modal";
 import { useState } from "react";
 import { 
-  FaMobileAlt, 
   FaCss3Alt, 
   FaNodeJs, 
   FaDatabase, 
