@@ -1,37 +1,42 @@
-import { FaUserAlt, FaTools } from "react-icons/fa";
+import { FiUser, FiZap } from "react-icons/fi";
 import "./About.css";
 
 export default function About({ darkMode }) {
   return (
-    <div className={`about-card ${darkMode ? "dark" : ""}`}>
-
-      {/* ABOUT HEADER */}
-      <div className="about-header">
-        <FaUserAlt className="about-icon" />
-        <h3>About Me</h3>
+    <div className={`ab-card ${darkMode ? "dark" : ""}`}>
+      {/* Header */}
+      <div className="ab-header">
+        <div className="ab-header-left">
+          <div className="ab-icon-wrap">
+            <FiUser size={15} />
+          </div>
+          <h3 className="ab-title">About me</h3>
+        </div>
+        <span className="ab-badge">intro</span>
       </div>
 
-      <p className="about-text">
+      <p className="ab-text">
         Aspiring Web Developer and 3rd-year college student at Pampanga State
         University, passionate about building clean and user-friendly web
         applications. I continuously develop my skills through projects and
         hands-on practice, aiming to gain industry experience and contribute to meaningful solutions.
       </p>
 
-      {/* KEY EXPERTISE HEADER */}
-      <div className="expertise-header">
-        <FaTools className="expertise-icon" />
-        <h4>Key Expertise</h4>
+      <hr className="ab-divider" />
+
+      {/* Key Expertise */}
+      <div className="ab-section-header">
+        <FiZap size={13} className="ab-section-icon" />
+        <span className="ab-section-title">Key Expertise</span>
       </div>
 
-      <div className="tags">
-        <span>React</span>
-        <span>UI/UX Design</span>
-        <span>TypeScript</span>
-        <span>Frontend Development</span>
-        <span>Responsive Web Design</span>
+      <div className="ab-tags">
+        <span className="ab-tag">React</span>
+        <span className="ab-tag">UI/UX Design</span>
+        <span className="ab-tag">TypeScript</span>
+        <span className="ab-tag">Frontend Development</span>
+        <span className="ab-tag">Responsive Web Design</span>
       </div>
-
     </div>
   );
 }

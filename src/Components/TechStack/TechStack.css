@@ -1,196 +1,193 @@
-/* ==============================
-   TECH CONTAINER
-================================ */
-.tech-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 20px;
-  padding: 12px 0;
-}
-
-@media (max-width: 1024px) {
-  .tech-container {
-    justify-content: center;
-  }
-}
-
-/* ==============================
-   TECH CARD
-================================ */
-.tech-card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  flex: 1 1 300px;
-  max-width: 500px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
-}
-
-.tech-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.12);
-}
-
-@media (max-width: 768px) {
-  .tech-card {
-    flex: 1 1 90%;
-    max-width: 90%;
-    padding: 20px;
-  }
-}
-
-/* ==============================
-   HEADER
-================================ */
-.tech-header {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  margin-bottom: 16px;
-  position: relative; /* for absolute dropdown */
-}
-
-.tech-card:not(.dark) .tech-header h3 {
-  display: flex;
-  align-items: center;
-  font-size: 22px;
-  font-weight: 700;
-  color: #111827;
-}
-
-.header-icon {
-  margin-right: 8px;
-  font-size: 24px;
-  color: #111827;
-}
-
-/* ==============================
-   DROPDOWN MENU
-================================ */
-.dropdown-tab {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  display: inline-block;
-  z-index: 20;
-}
-
-.dropdown-tab button {
-  background: transparent;
-  border: 1px solid #e5e7eb;
-  padding: 6px 12px;
-  border-radius: 999px;
-  font-size: 13px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  transition: all 0.2s ease;
-}
-
-.dropdown-tab button:hover {
-  background: #e5e7eb;
-}
-
-.tech-card.dark .dropdown-tab button {
-  background: #1f2937;
-  border: 1px solid #334155;
-  color: #e5e7eb;
-}
-
-.tech-card.dark .dropdown-tab button:hover {
-  background: #334155;
-}
-
-.dropdown-menu {
-  position: absolute;
-  top: 42px;
-  right: 0;
+/* Card */
+.ts-card {
   background: #ffffff;
   border: 1px solid #e5e7eb;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
-  z-index: 10;
-  min-width: 160px;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: background 0.3s, border-color 0.3s;
+}
+
+/* Header */
+.ts-header {
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-.tech-card.dark .dropdown-menu {
-  background: #1f2937;
-  border: 1px solid #334155;
+.ts-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.dropdown-item {
-  padding: 6px 12px;
-  background: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 12px;
-  text-align: left;
-  transition: background 0.2s;
+.ts-icon-wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
 }
 
-.dropdown-item:hover {
+.ts-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.ts-count {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
   background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-family: monospace;
 }
 
-.tech-card.dark .dropdown-item:hover {
-  background: #334155;
+/* Tabs */
+.ts-tabs {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-bottom: 16px;
 }
 
-/* ==============================
-   TECH LIST
-================================ */
-.tech-list {
+.ts-tab {
+  font-size: 11.5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #6b7280;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  font-family: inherit;
+}
+
+.ts-tab:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  color: #374151;
+}
+
+.ts-tab.active {
+  background: #EEEDFE;
+  border-color: #AFA9EC;
+  color: #3C3489;
+  font-weight: 600;
+}
+
+/* Section */
+.ts-section {
+  margin-bottom: 14px;
+}
+
+.ts-section-label {
+  font-size: 10px;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
+  margin: 0 0 8px;
+}
+
+/* Pills */
+.ts-grid {
   display: flex;
   flex-wrap: wrap;
-  gap: 12px;
+  gap: 7px;
 }
 
-.tech-item {
-  background: #f3f4f6;
-  color: #111827;
-  padding: 10px 14px;
-  border-radius: 999px;
-  font-size: 13px;
+.ts-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 11.5px;
+  padding: 5px 11px;
+  border-radius: 20px;
   border: 1px solid #e5e7eb;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  background: #f9fafb;
+  color: #374151;
+  transition: border-color 0.15s, background 0.15s, transform 0.15s;
+  white-space: nowrap;
 }
 
-.tech-item:hover {
-  transform: translateY(-4px) scale(1.05);
-  background: #e5e7eb;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+.ts-pill:hover {
+  border-color: #d1d5db;
+  background: #f3f4f6;
+  transform: translateY(-1px);
 }
 
-/* ==============================
-   DARK MODE
-================================ */
-.tech-card.dark {
-  background: rgba(15, 23, 42, 0.95);
-  color: #e5e7eb;
-  border: 1px solid #1f2937;
+.ts-pill-icon {
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  line-height: 1;
 }
 
-.tech-card.dark .tech-header h3 {
-  -webkit-text-fill-color: #e5e7eb;
+.ts-pill-label {
+  font-size: 11.5px;
 }
 
-.tech-card.dark .header-icon {
-  color: #e5e7eb;
+/* Dark mode */
+.ts-card.dark {
+  background: #0f172a;
+  border-color: #1e293b;
+  color: #e2e8f0;
 }
 
-.tech-card.dark .tech-item {
-  background: #1f2937;
-  color: #e5e7eb;
-  border: 1px solid #334155;
+.ts-card.dark .ts-icon-wrap {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
 }
 
-.tech-card.dark .tech-item:hover {
-  background: #2563eb;
-  color: #ffffff;
-  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+.ts-card.dark .ts-title {
+  color: #f1f5f9;
+}
+
+.ts-card.dark .ts-count {
+  background: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+.ts-card.dark .ts-tab {
+  background: #0f172a;
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+.ts-card.dark .ts-tab:hover {
+  background: #1e293b;
+  border-color: #475569;
+  color: #e2e8f0;
+}
+
+.ts-card.dark .ts-tab.active {
+  background: #26215C;
+  border-color: #534AB7;
+  color: #CECBF6;
+}
+
+.ts-card.dark .ts-section-label {
+  color: #475569;
+}
+
+.ts-card.dark .ts-pill {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
+}
+
+.ts-card.dark .ts-pill:hover {
+  background: #263349;
+  border-color: #475569;
 }

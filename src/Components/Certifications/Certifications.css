@@ -1,303 +1,352 @@
-/* ==============================
-   CERTIFICATE CARD
-================================ */
-.card {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 24px;
-  padding: 28px;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.08);
-  max-width: 450px;
-  margin: 12px;
-  transition: background 0.3s, color 0.3s, box-shadow 0.3s ease, transform 0.3s ease;
-}
-
-.card.dark {
-  background: rgba(15, 23, 42, 0.95);
-  color: #e5e7eb;
-  border: 1px solid #1f2937;
-}
-
-.card h3 {
-  display: flex;
-  align-items: center;
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-}
-
-.header-icon {
-  margin-right: 10px;
-  font-size: 26px;
-  color: #111827;
-}
-
-.card.dark .header-icon {
-  color: #e5e7eb;
-}
-
-/* ==============================
-   CERT ITEM
-================================ */
-.cert {
-  display: flex;
-  align-items: center;
-  background: #f3f4f6;
-  border-radius: 16px;
-  padding: 14px 18px;
-  margin-bottom: 12px;
+/* Card */
+.cf-card {
+  background: #ffffff;
   border: 1px solid #e5e7eb;
-  transition: transform 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  transition: background 0.3s, border-color 0.3s;
 }
 
-.cert:hover {
-  transform: translateY(-3px) scale(1.02);
-  background: #e5e7eb;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+/* Header */
+.cf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
 }
 
-.card.dark .cert {
-  background: #1f2937;
-  border: 1px solid #334155;
+.cf-header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
-.card.dark .cert:hover {
-  background: #334155;
-  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+.cf-icon-wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
 }
 
-.cert-icon {
-  font-size: 20px;
-  color: #f59e0b; /* golden award color */
-  margin-right: 12px;
+.cf-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.cf-count {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-family: monospace;
+}
+
+/* List */
+.cf-list {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+/* Cert item */
+.cf-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 11px 13px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  cursor: pointer;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
+  position: relative;
+  overflow: hidden;
+}
+
+.cf-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  border-radius: 12px 0 0 12px;
+  background: #BA7517;
+  opacity: 0.75;
+}
+
+.cf-item:hover {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateX(3px);
+}
+
+.cf-item:focus-visible {
+  outline: 2px solid #BA7517;
+  outline-offset: 2px;
+}
+
+/* Medal icon */
+.cf-medal {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: #FAEEDA;
+  border: 1px solid #EF9F27;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   flex-shrink: 0;
 }
 
-.card.dark .cert-icon {
-  color: #fbbf24;
+/* Text */
+.cf-body {
+  flex: 1;
+  min-width: 0;
 }
 
-.cert-text strong {
-  display: block;
-  font-size: 16px;
-  margin-bottom: 4px;
+.cf-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 2px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.cert-text p {
-  font-size: 14px;
-  color: #4b5563;
+.cf-sub {
+  font-size: 11.5px;
+  color: #6b7280;
   margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.card.dark .cert-text p {
-  color: #d1d5db;
+.cf-arrow {
+  color: #9ca3af;
+  flex-shrink: 0;
+  transition: transform 0.2s, color 0.2s;
 }
 
-/* ==============================
-   MODAL OVERLAY
-================================ */
-/* Modal overlay - center everything */
-.modal-overlay {
+.cf-item:hover .cf-arrow {
+  transform: translateX(3px);
+  color: #374151;
+}
+
+/* Modal overlay */
+.cf-overlay {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.7);
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
   display: flex;
+  align-items: center;
   justify-content: center;
-  align-items: center;
-  z-index: 999;
-  animation: fadeIn 0.3s ease;
-  padding: 12px; /* prevents modal touching edges */
-  box-sizing: border-box;
+  z-index: 1000;
+  padding: 16px;
+  backdrop-filter: blur(2px);
+  animation: cfFade 0.18s ease;
 }
 
-/* Modal content - fully responsive & centered */
-.modal-content {
-  background: #fff;
-  padding: 24px;
-  border-radius: 24px;
-  max-width: 500px;
-  width: 100%;         /* allows shrinking */
-  position: relative;
-  text-align: center;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.2);
-  transform: scale(0.9);
-  animation: scaleIn 0.3s forwards;
-  transition: all 0.3s ease;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+@keyframes cfFade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
 }
 
-.card.dark .modal-content {
-  background: #1f2937;
-  color: #e5e7eb;
-  box-shadow: 0 12px 32px rgba(0,0,0,0.5);
-}
-
-/* Modal image */
-.modal-content img {
-  max-width: 100%;
-  max-height: 300px;
+.cf-modal {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 16px;
-  margin-bottom: 16px;
-  object-fit: contain;
+  padding: 22px;
+  width: 100%;
+  max-width: 400px;
+  position: relative;
+  animation: cfUp 0.22s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* Modal text */
-.modal-content h4 {
-  font-size: 20px;
-  margin-bottom: 6px;
+@keyframes cfUp {
+  from {
+    transform: translateY(14px) scale(0.97);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
-.modal-content p {
-  font-size: 14px;
-  color: #4b5563;
-  margin: 0;
-}
-
-.card.dark .modal-content p {
-  color: #d1d5db;
-}
-
-/* Close button */
-.modal-close {
+.cf-modal-close {
   position: absolute;
   top: 12px;
   right: 12px;
-  background: #f3f4f6;
-  border: none;
-  font-size: 20px;
+  width: 28px;
+  height: 28px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: none;
   cursor: pointer;
-  border-radius: 50%;
-  padding: 6px;
-  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #6b7280;
+  transition: background 0.15s, color 0.15s;
 }
 
-.modal-close:hover {
-  background: #e5e7eb;
-  transform: scale(1.1);
+.cf-modal-close:hover {
+  background: #f3f4f6;
+  color: #111827;
 }
 
-.card.dark .modal-close {
-  background: #334155;
-  color: #e5e7eb;
+/* Modal image */
+.cf-img-wrap {
+  width: 100%;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+  margin-bottom: 14px;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
 }
 
-.card.dark .modal-close:hover {
-  background: #475569;
+.cf-img-wrap img {
+  width: 100%;
+  max-height: 280px;
+  object-fit: contain;
+  display: block;
 }
 
-/* ===== Responsive ===== */
-@media (max-width: 1024px) {
-  .modal-content {
-    max-width: 400px;
-    padding: 20px;
-  }
-
-  .modal-content img {
-    max-height: 220px;
-  }
-
-  .modal-content h4 {
-    font-size: 18px;
-  }
-
-  .modal-content p {
-    font-size: 13px;
-  }
-
-  .modal-close {
-    font-size: 18px;
-    padding: 5px;
-  }
+/* Modal text */
+.cf-modal-name {
+  font-size: 14px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 4px;
 }
 
-@media (max-width: 768px) {
-  .modal-content {
-    max-width: 320px;
-    padding: 16px;
-  }
-
-  .modal-content img {
-    max-height: 180px;
-  }
-
-  .modal-content h4 {
-    font-size: 16px;
-  }
-
-  .modal-content p {
-    font-size: 12px;
-  }
-
-  .modal-close {
-    font-size: 16px;
-    padding: 4px;
-  }
+.cf-modal-sub {
+  font-size: 12.5px;
+  color: #6b7280;
+  margin: 0 0 14px;
 }
 
-@media (max-width: 480px) {
-  .modal-content {
-    max-width: 280px;
-    padding: 12px;
-  }
-
-  .modal-content img {
-    max-height: 150px;
-  }
-
-  .modal-content h4 {
-    font-size: 15px;
-  }
-
-  .modal-content p {
-    font-size: 11px;
-  }
-
-  .modal-close {
-    font-size: 14px;
-    padding: 3px;
-  }
+.cf-modal-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: #FAEEDA;
+  border: 1px solid #EF9F27;
+  color: #854F0B;
+  font-family: monospace;
 }
 
-/* Modal animation */
-@keyframes scaleIn {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+/* Dark mode */
+.cf-card.dark {
+  background: #0f172a;
+  border-color: #1e293b;
+  color: #e2e8f0;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.cf-card.dark .cf-icon-wrap {
+  background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
 }
 
-
-/* ==============================
-   ANIMATIONS
-================================ */
-@keyframes scaleIn {
-  0% { transform: scale(0.8); opacity: 0; }
-  100% { transform: scale(1); opacity: 1; }
+.cf-card.dark .cf-title {
+  color: #f1f5f9;
 }
 
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
+.cf-card.dark .cf-count {
+  background: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
 }
 
-/* ==============================
-   RESPONSIVE
-================================ */
-@media (max-width: 768px) {
-  .card {
-    max-width: 95%;
-    padding: 20px;
-    margin: 10px auto;
-  }
-  .cert {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+.cf-card.dark .cf-item {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.cf-card.dark .cf-item:hover {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.cf-card.dark .cf-medal {
+  background: #412402;
+  border-color: #854F0B;
+}
+
+.cf-card.dark .cf-name {
+  color: #f1f5f9;
+}
+
+.cf-card.dark .cf-sub {
+  color: #94a3b8;
+}
+
+.cf-card.dark .cf-arrow {
+  color: #475569;
+}
+
+.cf-card.dark .cf-item:hover .cf-arrow {
+  color: #e2e8f0;
+}
+
+/* Dark modal — scoped to overlay since it's a portal */
+.cf-modal-dark {
+  background: #0f172a;
+  border-color: #1e293b;
+}
+
+.cf-modal-dark .cf-modal-close {
+  border-color: #334155;
+  color: #94a3b8;
+}
+
+.cf-modal-dark .cf-modal-close:hover {
+  background: #1e293b;
+  color: #f1f5f9;
+}
+
+.cf-modal-dark .cf-img-wrap {
+  background: #1e293b;
+  border-color: #334155;
+}
+
+.cf-modal-dark .cf-modal-name {
+  color: #f1f5f9;
+}
+
+.cf-modal-dark .cf-modal-sub {
+  color: #94a3b8;
+}
+
+.cf-modal-dark .cf-modal-badge {
+  background: #412402;
+  border-color: #854F0B;
+  color: #FAC775;
 }

@@ -1,248 +1,156 @@
-/* =========================
-   ABOUT CARD BASE
-=========================== */
-.about-card {
+/* About Card */
+.ab-card {
   background: #ffffff;
-  border-radius: 24px;
-  padding: 24px;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
   margin-bottom: 20px;
-  transition: all 0.3s ease;
-  cursor: default;
+  transition: background 0.3s, border-color 0.3s;
 }
 
-.about-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 25px 55px rgba(0, 0, 0, 0.18);
-}
-
-/* =========================
-   ABOUT HEADER
-=========================== */
-.about-header {
+/* Header */
+.ab-header {
   display: flex;
   align-items: center;
-  gap: 14px;
+  justify-content: space-between;
   margin-bottom: 16px;
 }
 
-.about-header h3 {
-  font-size: 18px;
-  font-weight: 700;
-  margin: 0;
-  color: #111827; /* light mode default */
-}
-
-.about-icon {
-  font-size: 20px;
-  color: #3b82f6;
-  background: #e0f2fe;
-  padding: 6px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.about-card:hover .about-icon {
-  transform: scale(1.1);
-}
-
-/* =========================
-   ABOUT TEXT
-=========================== */
-.about-text {
-  font-size: 14px;
-  line-height: 1.7;
-  color: #4b5563;
-  margin-bottom: 20px;
-}
-
-/* =========================
-   EXPERTISE HEADER
-=========================== */
-.expertise-header {
+.ab-header-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 8px;
+}
+
+.ab-icon-wrap {
+  width: 30px;
+  height: 30px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #374151;
+}
+
+.ab-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #111827;
+  margin: 0;
+}
+
+.ab-badge {
+  font-size: 11px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  background: #f3f4f6;
+  border: 1px solid #e5e7eb;
+  color: #6b7280;
+  font-family: monospace;
+}
+
+/* Text */
+.ab-text {
+  font-size: 13px;
+  color: #4b5563;
+  line-height: 1.6;
+  margin: 0 0 16px;
+}
+
+/* Divider */
+.ab-divider {
+  border: none;
+  border-top: 1px solid #f3f4f6;
+  margin: 16px 0;
+}
+
+/* Section Header */
+.ab-section-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
   margin-bottom: 12px;
 }
 
-.expertise-header h4 {
-  font-size: 14px;
-  font-weight: 700;
-  margin: 0;
-  color: #111827;
+.ab-section-icon {
+  color: #f59e0b;
 }
 
-.expertise-icon {
-  font-size: 16px;
-  color: #10b981;
-  background: #d1fae5;
-  padding: 5px;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+.ab-section-title {
+  font-size: 10px;
+  font-family: monospace;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #9ca3af;
 }
 
-.about-card:hover .expertise-icon {
-  transform: scale(1.1);
-}
-
-/* =========================
-   TAGS
-=========================== */
-.tags {
+/* Tags */
+.ab-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 8px;
 }
 
-.tags span {
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 12px;
-  font-weight: 600;
-  background: #f3f4f6;
-  color: #111827;
+.ab-tag {
+  font-size: 11.5px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  background: #f9fafb;
   border: 1px solid #e5e7eb;
-  transition: all 0.3s ease;
-  cursor: default;
+  color: #374151;
+  transition: background 0.15s, border-color 0.15s, transform 0.15s;
 }
 
-.tags span:hover {
-  transform: translateY(-2px);
-  background: #e0f2fe;
-  border-color: #3b82f6;
-  color: #111827;
+.ab-tag:hover {
+  background: #f3f4f6;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
 }
 
-/* =========================
-   DARK MODE
-=========================== */
-.about-card.dark {
+/* ── Dark mode ── */
+.ab-card.dark {
   background: #0f172a;
-  color: #e5e7eb;
-  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.4);
+  border-color: #1e293b;
+  color: #e2e8f0;
 }
 
-.about-card.dark .about-header h3 {
-  color: #f9fafb;
-}
-
-.about-card.dark .about-text {
+.ab-card.dark .ab-icon-wrap {
+  background: #1e293b;
+  border-color: #334155;
   color: #cbd5e1;
 }
 
-.about-card.dark .about-icon {
-  color: #60a5fa;
+.ab-card.dark .ab-title {
+  color: #f1f5f9;
+}
+
+.ab-card.dark .ab-badge {
   background: #1e293b;
+  border-color: #334155;
+  color: #94a3b8;
 }
 
-.about-card.dark .expertise-icon {
-  color: #34d399;
+.ab-card.dark .ab-text {
+  color: #94a3b8;
+}
+
+.ab-card.dark .ab-divider {
+  border-color: #1e293b;
+}
+
+.ab-card.dark .ab-section-title {
+  color: #475569;
+}
+
+.ab-card.dark .ab-tag {
   background: #1e293b;
+  border-color: #334155;
+  color: #cbd5e1;
 }
 
-.about-card.dark .expertise-header h4 {
-  color: #e5e7eb;
-}
-
-.about-card.dark .tags span {
-  background: #1f2937;
-  color: #e5e7eb;
-  border: 1px solid #374151;
-}
-
-.about-card.dark .tags span:hover {
-  background: #2563eb;
-  border-color: #3b82f6;
-  color: #ffffff;
-}
-
-/* =========================
-   RESPONSIVE
-=========================== */
-@media (max-width: 1024px) {
-  .about-card {
-    padding: 20px;
-  }
-  .about-header h3 {
-    font-size: 16px;
-  }
-  .about-icon {
-    font-size: 18px;
-    padding: 5px;
-  }
-  .about-text {
-    font-size: 13px;
-  }
-  .expertise-header h4 {
-    font-size: 13px;
-  }
-  .expertise-icon {
-    font-size: 14px;
-    padding: 4px;
-  }
-  .tags span {
-    font-size: 11px;
-    padding: 6px 12px;
-  }
-}
-
-@media (max-width: 768px) {
-  .about-card {
-    padding: 18px;
-  }
-  .about-header {
-    gap: 10px;
-  }
-  .about-header h3 {
-    font-size: 15px;
-  }
-  .about-icon {
-    font-size: 16px;
-    padding: 4px;
-  }
-  .about-text {
-    font-size: 12px;
-  }
-  .expertise-header h4 {
-    font-size: 12px;
-  }
-  .expertise-icon {
-    font-size: 14px;
-    padding: 3px;
-  }
-  .tags span {
-    font-size: 10px;
-    padding: 5px 10px;
-  }
-}
-
-@media (max-width: 480px) {
-  .about-card {
-    padding: 14px;
-  }
-  .about-header {
-    gap: 8px;
-  }
-  .about-header h3 {
-    font-size: 14px;
-  }
-  .about-icon {
-    font-size: 14px;
-    padding: 3px;
-  }
-  .about-text {
-    font-size: 11px;
-  }
-  .expertise-header h4 {
-    font-size: 11px;
-  }
-  .expertise-icon {
-    font-size: 12px;
-    padding: 2px;
-  }
-  .tags span {
-    font-size: 9px;
-    padding: 4px 8px;
-  }
+.ab-card.dark .ab-tag:hover {
+  background: #263349;
+  border-color: #475569;
 }

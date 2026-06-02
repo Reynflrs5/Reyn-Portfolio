@@ -1,123 +1,203 @@
 import "./Projects.css";
-import { FaProjectDiagram } from "react-icons/fa";
-import Modal from "../../Components/Modal";
 import { useState } from "react";
-import { 
-  FaCss3Alt, 
-  FaNodeJs, 
-  FaDatabase, 
-  FaHtml5, 
-  FaJs, 
-  FaReact, 
-  FaServer, 
-  FaVial 
-} from "react-icons/fa"; // We'll use FaReact for React and custom icon for Vite if needed
+import {
+  FaCss3Alt, FaNodeJs, FaDatabase,
+  FaHtml5, FaJs, FaReact, FaServer, FaVial, FaPhp
+} from "react-icons/fa";
+import { FiExternalLink, FiX, FiArrowRight, FiLayers } from "react-icons/fi";
+
+const ACCENT_COLORS = ["#7F77DD", "#1D9E75", "#378ADD", "#D85A30", "#D4537E"];
+
+const projects = [
+  {
+    name: "GWA Calculator",
+    desc: "Compute your General Weighted Average",
+    detail:
+      "A clean, fast tool for students to compute their General Weighted Average across subjects. Built with React and powered by Vite for snappy load times. Deployed on Vercel.",
+    tech: [
+      { label: "React", icon: <FaReact color="#61DAFB" /> },
+      { label: "Vite", icon: <FaVial color="#646CFF" /> },
+    ],
+    status: "live",
+    statusText: "Live & deployed",
+    year: "2024",
+    link: "https://gwa-calculator-reyn.vercel.app/",
+  },
+  {
+    name: "Lifeline Web Promotion",
+    desc: "Web promotion and marketing platform",
+    detail:
+      "A promotional website built for Lifeline featuring a responsive landing page and marketing sections. Pure HTML/CSS/JS stack with a focus on clean presentation and fast loading.",
+    tech: [
+      { label: "HTML5", icon: <FaHtml5 color="#E34F26" /> },
+      { label: "CSS3", icon: <FaCss3Alt color="#1572B6" /> },
+      { label: "JavaScript", icon: <FaJs color="#F7DF1E" /> },
+    ],
+    status: "inactive",
+    statusText: "No public link available",
+    year: "2023",
+    link: null,
+  },
+  {
+    name: "RentGo",
+    desc: "Car Rental Booking System",
+    detail:
+      "A full-stack car rental platform allowing users to browse vehicles, make bookings, and manage reservations. Features a React frontend, Node.js API server, and MySQL database.",
+    tech: [
+      { label: "React", icon: <FaReact color="#61DAFB" /> },
+      { label: "Node.js", icon: <FaNodeJs color="#3C873A" /> },
+      { label: "MySQL", icon: <FaDatabase color="#4479A1" /> },
+    ],
+    status: "wip",
+    statusText: "In progress — not yet deployed",
+    year: "2024",
+    link: null,
+  },
+  {
+    name: "Old Portfolio",
+    desc: "My previous portfolio website",
+    detail:
+      "An earlier version of my personal portfolio, built with React and hosted on Vercel. Showcased earlier projects and skills, now superseded by this current version.",
+    tech: [
+      { label: "React", icon: <FaReact color="#61DAFB" /> },
+      { label: "Node.js", icon: <FaNodeJs color="#3C873A" /> },
+    ],
+    status: "live",
+    statusText: "Live & deployed",
+    year: "2023",
+    link: "https://reynflrs.vercel.app/",
+  },
+  {
+    name: "PSU Property System",
+    desc: "Equipment borrowing & tracking system",
+    detail:
+      "An internal property management system for PSU Mexico campus. Allows staff to log equipment borrowing, track availability, and generate usage reports.",
+    tech: [
+      { label: "PHP", icon: <FaPhp color="#8892BF" /> },
+      { label: "MySQL", icon: <FaDatabase color="#4479A1" /> },
+      { label: "Bootstrap", icon: <FaServer color="#7952B3" /> },
+    ],
+    status: "inactive",
+    statusText: "Internal use — no public link",
+    year: "2023",
+    link: null,
+  },
+];
 
 export default function Projects({ darkMode }) {
-  const [openModal, setOpenModal] = useState(false);
   const [selectedProject, setSelectedProject] = useState(null);
+  const [open, setOpen] = useState(false);
 
-  const projects = [
-    {
-      name: "GWA Calculator",
-      desc: "A calculator to compute your General Weighted Average",
-      tech: [
-        <FaReact key="1" color="#61DAFB" />, // React
-        <FaVial key="2" color="#646CFF" />,  // Using FaVial as a placeholder for Vite
-      ],
-      link: "https://gwa-calculator-reyn.vercel.app/",
-    },
-    {
-      name: "Lifeline Web Promotion",
-      desc: "Web promotion and marketing platform",
-      tech: [
-        <FaHtml5 key="1" color="#E34F26" />,
-        <FaCss3Alt key="2" color="#1572B6" />,
-        <FaJs key="3" color="#F7DF1E" />,
-      ],
-      link: null,
-    },
-    {
-      name: "RentGo",
-      desc: "Car Rental Booking System",
-      tech: [
-        <FaReact key="1" color="#61DAFB" />,
-        <FaServer key="2" color="#4D4D4D" />,
-        <FaDatabase key="3" color="#4479A1" />,
-      ],
-      link: null,
-    },
-    {
-      name: "Old Portfolio",
-      desc: "My previous portfolio website",
-      tech: [
-        <FaReact key="1" color="#61DAFB" />,
-        <FaNodeJs key="2" color="#3C873A" />,
-      ],
-      link: "https://reynflrs.vercel.app/",
-    },
-    {
-      name: "PSU Mexico Property Management System",
-      desc: "Equipment borrowing & tracking system",
-      tech: [
-        <FaServer key="1" color="#4D4D4D" />,
-        <FaDatabase key="2" color="#4479A1" />,
-      ],
-      link: null,
-    },
-  ];
-
-  const openProject = (project) => {
-    setSelectedProject(project);
-    setOpenModal(true);
+  const openModal = (p) => {
+    setSelectedProject(p);
+    setOpen(true);
   };
 
+  const closeModal = () => setOpen(false);
+
+  const idx = projects.indexOf(selectedProject);
+  const accent = ACCENT_COLORS[idx] ?? ACCENT_COLORS[0];
+
   return (
-    <div className={`projects-card ${darkMode ? "dark" : ""}`}>
-      {/* Header with icon */}
-      <div className="projects-header">
-        <div className="projects-title">
-          <FaProjectDiagram className="projects-header-icon" />
-          <h3>Recent Projects</h3>
+    <div className={`pc-card ${darkMode ? "dark" : ""}`}>
+      {/* Header */}
+      <div className="pc-header">
+        <div className="pc-header-left">
+          <div className="pc-icon-wrap">
+            <FiLayers size={15} />
+          </div>
+          <h3 className="pc-title">Recent Projects</h3>
         </div>
-        <span className="projects-subtitle">Latest work</span>
+        <span className="pc-badge">{projects.length} projects</span>
       </div>
 
-      {/* Project list */}
-      <div className="projects-list">
-        {projects.map((p) => (
+      {/* List */}
+      <div className="pc-list">
+        {projects.map((p, i) => (
           <div
             key={p.name}
-            className="project-item"
-            onClick={() => openProject(p)}
+            className="pc-item"
+            style={{ "--accent": ACCENT_COLORS[i] }}
+            onClick={() => openModal(p)}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === "Enter" && openModal(p)}
           >
-            {/* Project Text */}
-            <div className="project-text">
-              <strong>{p.name}</strong>
-              <p>{p.desc}</p>
+            <div className="pc-item-body">
+              <p className="pc-item-name">{p.name}</p>
+              <p className="pc-item-desc">{p.desc}</p>
             </div>
-
-            {/* Tech Tooltip with colored icons */}
-            {p.tech.length > 0 && (
-              <div className="tech-tooltip">
-                {p.tech.map((t, idx) => (
-                  <span key={idx} className="tech-icon">
-                    {t}
-                  </span>
-                ))}
-              </div>
-            )}
+            <div className="pc-tech-pills">
+              {p.tech.slice(0, 2).map((t) => (
+                <span key={t.label} className="pc-tech-pill">
+                  {t.label}
+                </span>
+              ))}
+            </div>
+            <FiArrowRight className="pc-arrow" size={14} />
           </div>
         ))}
       </div>
 
       {/* Modal */}
-      <Modal
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        project={selectedProject}
-        darkMode={darkMode}
-      />
-    </div>
+      {open && selectedProject && (
+        <div
+          className={`pc-overlay open ${darkMode ? "dark" : ""}`}
+          onClick={(e) => e.target === e.currentTarget && closeModal()}
+        >
+          <div className="pc-modal">
+            <div className="pc-modal-header">
+              <div
+                className="pc-modal-accent"
+                style={{ color: accent, borderColor: accent + "33" }}
+              >
+                <FiLayers size={18} />
+              </div>
+              <button className="pc-modal-close" onClick={closeModal}>
+                <FiX size={14} />
+              </button>
+            </div>
+
+            <p className="pc-modal-name">{selectedProject.name}</p>
+            <p className="pc-modal-desc">{selectedProject.desc}</p>
+
+            <hr className="pc-divider" />
+
+            <p className="pc-section-label">about</p>
+            <p className="pc-detail-text">{selectedProject.detail}</p>
+
+            <p className="pc-section-label">tech stack</p>
+            <div className="pc-stack-pills">
+              {selectedProject.tech.map((t) => (
+                <span key={t.label} className="pc-stack-pill">
+                  <span className="pc-stack-icon">{t.icon}</span>
+                  {t.label}
+                </span>
+              ))}
+            </div>
+
+            <p className="pc-section-label">status</p>
+            <div className="pc-status-row">
+              <span className={`pc-status-dot ${selectedProject.status}`} />
+              <span className="pc-status-text">{selectedProject.statusText}</span>
+              <span className="pc-year">{selectedProject.year}</span>
+            </div>
+
+
+            <a
+              href={selectedProject.link ?? "#"}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`pc-modal-link ${!selectedProject.link ? "disabled" : ""}`}
+              onClick={(e) => !selectedProject.link && e.preventDefault()}
+            >
+              <FiExternalLink size={14} />
+              View live project
+            </a>
+          </div>
+        </div>
+      )
+      }
+    </div >
   );
 }

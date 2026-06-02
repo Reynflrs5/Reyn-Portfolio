@@ -6,12 +6,14 @@
   background: #f4f6f8;
   min-height: 100vh;
   font-family: "Inter", sans-serif;
+  align-items: start;
 }
 
 .profile-main {
   display: flex;
   flex-direction: column;
   gap: 24px;
+  min-width: 0; /* prevent overflow */
 }
 
 .grid-2 {
@@ -19,24 +21,62 @@
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 }
+
+/* ── Large tablet ── */
 @media (max-width: 1024px) {
   .profile-page {
     grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 }
 
+/* ── Small tablet / large phone ── */
 @media (max-width: 768px) {
+  .profile-page {
+    padding: 12px;
+    gap: 12px;
+  }
+
   .grid-2 {
     grid-template-columns: 1fr;
+    gap: 12px;
   }
 
   .sidebar {
     text-align: center;
+    max-width: 100% !important;
+    border-radius: 16px !important;
   }
 
   .profile-img {
-    left: 50%;
-    transform: translateX(-50%);
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+  }
+}
+
+/* ── Mobile phones ── */
+@media (max-width: 480px) {
+  .profile-page {
+    padding: 8px;
+    gap: 8px;
+  }
+
+  .grid-2 {
+    gap: 8px;
+  }
+}
+
+/* ── Very small phones (320px) ── */
+@media (max-width: 360px) {
+  .profile-page {
+    padding: 6px;
+    gap: 6px;
   }
 }
 .sidebar-extra {
