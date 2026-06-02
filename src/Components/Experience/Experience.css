@@ -257,3 +257,61 @@
 .ec-card.dark .tl-sub {
   color: #94a3b8;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .ec-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ec-card {
+    padding: 12px;
+  }
+  
+  .ec-title {
+    font-size: 14px;
+  }
+  
+  .ec-count {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+
+  .ec-header {
+    margin-bottom: 12px;
+  }
+
+  .tl {
+    padding-left: 20px;
+  }
+  
+  .tl::before {
+    left: 7px;
+  }
+  
+  .tl-item {
+    padding: 10px;
+  }
+  
+  .tl-dot {
+    left: -18px;
+    width: 8px;
+    height: 8px;
+    top: 14px;
+  }
+  
+  .tl-top {
+    flex-wrap: wrap;
+    gap: 5px;
+  }
+  
+  .tl-title {
+    font-size: 12px;
+  }
+  
+  .tl-sub {
+    font-size: 11px;
+  }
+}

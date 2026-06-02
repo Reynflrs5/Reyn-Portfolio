@@ -477,3 +477,63 @@
   background: #1e293b;
   border-color: #475569;
 }
+
+/* ── Responsive ── */
+@media (max-width: 768px) {
+  .pc-card {
+    padding: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .pc-card {
+    padding: 12px;
+  }
+  
+  .pc-header {
+    margin-bottom: 12px;
+  }
+
+  .pc-title {
+    font-size: 14px;
+  }
+  
+  .pc-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+  }
+  
+  .pc-item {
+    padding: 10px;
+    gap: 8px;
+  }
+  
+  .pc-item-name {
+    font-size: 12px;
+  }
+  
+  .pc-item-desc {
+    font-size: 11px;
+  }
+  
+  .pc-tech-pill {
+    font-size: 9px;
+    padding: 2px 5px;
+  }
+  
+  .pc-modal {
+    padding: 16px;
+  }
+  
+  .pc-modal-name {
+    font-size: 15px;
+  }
+  
+  .pc-modal-desc, .pc-detail-text {
+    font-size: 12px;
+  }
+  
+  .pc-status-row {
+    flex-wrap: wrap;
+  }
+}
