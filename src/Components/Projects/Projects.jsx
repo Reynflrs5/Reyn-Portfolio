@@ -2,9 +2,13 @@ import "./Projects.css";
 import { useState } from "react";
 import {
   FaCss3Alt, FaNodeJs, FaDatabase,
-  FaHtml5, FaJs, FaReact, FaServer, FaVial, FaPhp
+  FaHtml5, FaJs, FaReact, FaServer, FaVial, FaPhp, FaMicrosoft
 } from "react-icons/fa";
 import { FiExternalLink, FiX, FiArrowRight, FiLayers } from "react-icons/fi";
+
+import dmc1 from "../../assets/dmc-system1.jpg";
+import dmc2 from "../../assets/dmc-system2.jpg";
+import dmc3 from "../../assets/dmc-system3.jpg";
 
 const ACCENT_COLORS = ["#7F77DD", "#1D9E75", "#378ADD", "#D85A30", "#D4537E"];
 
@@ -37,6 +41,11 @@ const projects = [
     statusText: "No public link available",
     year: "2023",
     link: null,
+    images: [
+      "https://placehold.co/400x300?text=Lifeline+Promotion+1",
+      "https://placehold.co/400x300?text=Lifeline+Promotion+2",
+      "https://placehold.co/400x300?text=Lifeline+Promotion+3"
+    ],
   },
   {
     name: "RentGo",
@@ -44,7 +53,8 @@ const projects = [
     detail:
       "A full-stack car rental platform allowing users to browse vehicles, make bookings, and manage reservations. Features a React frontend, Node.js API server, and MySQL database.",
     tech: [
-      { label: "React", icon: <FaReact color="#61DAFB" /> },
+      { label: "React Native", icon: <FaReact color="#61DAFB" /> },
+      { label: "React (Admin)", icon: <FaReact color="#61DAFB" /> },
       { label: "Node.js", icon: <FaNodeJs color="#3C873A" /> },
       { label: "MySQL", icon: <FaDatabase color="#4479A1" /> },
     ],
@@ -52,35 +62,26 @@ const projects = [
     statusText: "In progress — not yet deployed",
     year: "2024",
     link: null,
-  },
-  {
-    name: "Old Portfolio",
-    desc: "My previous portfolio website",
-    detail:
-      "An earlier version of my personal portfolio, built with React and hosted on Vercel. Showcased earlier projects and skills, now superseded by this current version.",
-    tech: [
-      { label: "React", icon: <FaReact color="#61DAFB" /> },
-      { label: "Node.js", icon: <FaNodeJs color="#3C873A" /> },
+    images: [
+      "https://placehold.co/400x300?text=RentGo+1",
+      "https://placehold.co/400x300?text=RentGo+2",
+      "https://placehold.co/400x300?text=RentGo+3"
     ],
-    status: "live",
-    statusText: "Live & deployed",
-    year: "2023",
-    link: "https://reynflrs.vercel.app/",
   },
   {
-    name: "PSU Property System",
+    name: "DMC Property System",
     desc: "Equipment borrowing & tracking system",
     detail:
-      "An internal property management system for PSU Mexico campus. Allows staff to log equipment borrowing, track availability, and generate usage reports.",
+      "An internal property management system for DMC campus. Allows staff to log equipment borrowing, track availability, and generate usage reports.",
     tech: [
-      { label: "PHP", icon: <FaPhp color="#8892BF" /> },
+      { label: "VB.NET", icon: <FaMicrosoft color="#0078D4" /> },
       { label: "MySQL", icon: <FaDatabase color="#4479A1" /> },
-      { label: "Bootstrap", icon: <FaServer color="#7952B3" /> },
     ],
     status: "inactive",
     statusText: "Internal use — no public link",
     year: "2023",
     link: null,
+    images: [dmc1, dmc2, dmc3],
   },
 ];
 
@@ -162,6 +163,22 @@ export default function Projects({ darkMode }) {
             <p className="pc-modal-desc">{selectedProject.desc}</p>
 
             <hr className="pc-divider" />
+
+            {selectedProject.images && selectedProject.images.length > 0 && (
+              <>
+                <p className="pc-section-label">gallery</p>
+                <div className="pc-modal-gallery" style={{ display: "flex", gap: "10px", overflowX: "auto", marginBottom: "15px", paddingBottom: "5px" }}>
+                  {selectedProject.images.map((imgSrc, idx) => (
+                    <img
+                      key={idx}
+                      src={imgSrc}
+                      alt={`${selectedProject.name} screenshot ${idx + 1}`}
+                      style={{ width: "200px", height: "120px", objectFit: "cover", borderRadius: "8px", flexShrink: 0 }}
+                    />
+                  ))}
+                </div>
+              </>
+            )}
 
             <p className="pc-section-label">about</p>
             <p className="pc-detail-text">{selectedProject.detail}</p>

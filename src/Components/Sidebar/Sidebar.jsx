@@ -1,10 +1,11 @@
 import { useState } from "react";
 import "./Sidebar.css";
 import {
-  FiMoon, FiSun, FiMail, FiMapPin, FiCheckCircle,
-  FiGithub, FiLinkedin, FiFacebook, FiInstagram,
-  FiPhone, FiLink, FiTarget, FiMessageCircle,
-  FiBarChart2, FiFileText, FiDownload, FiX
+  FiMoon, FiSun, FiMail, FiMapPin,
+  FiGithub, FiFacebook, FiInstagram,
+  FiPhone, FiTarget, FiCode,
+  FiFileText, FiDownload, FiX,
+  FiArrowRight, FiShare2
 } from "react-icons/fi";
 import reynimg from "../../assets/reynimg.png";
 
@@ -12,20 +13,21 @@ export default function Sidebar({ darkMode, setDarkMode }) {
   const [resumeModal, setResumeModal] = useState(false);
 
   const links = {
-    linkedin: "https://www.linkedin.com/in/jashley-rain-flores-2734323a7/",
     github: "https://github.com/Reynflrs5",
     facebook: "https://facebook.com/Reyn12345",
     instagram: "https://instagram.com/reynflrs",
-    email: "mailto:fjashleyrain@gmail.com?subject=Portfolio Inquiry&body=Hello Jashley,",
+    email: "mailto:fjashleyrain@gmail.com?subject=Freelance Inquiry&body=Hi Jashley,",
   };
 
   const open = (url) => window.open(url, "_blank");
 
   return (
     <aside className={`sb ${darkMode ? "dark" : ""}`}>
+
       {/* Banner */}
       <div className="sb-banner">
-        <div className="sb-banner-pattern" />
+        <div className="sb-banner-grid" />
+        <div className="sb-banner-glow" />
         <button
           className="sb-darkbtn"
           onClick={() => setDarkMode(!darkMode)}
@@ -36,42 +38,58 @@ export default function Sidebar({ darkMode, setDarkMode }) {
       </div>
 
       {/* Avatar */}
-      <div className="sb-profile-row">
+      <div className="sb-avatar-wrap">
         <div className="sb-avatar">
           <img src={reynimg} alt="Jashley Rain Flores" />
         </div>
       </div>
 
       <div className="sb-body">
+
         {/* Name & location */}
-        <p className="sb-name">
-          Jashley Rain Flores
-          <FiCheckCircle className="sb-verified" size={13} />
-        </p>
+        <p className="sb-name">Jashley Rain Flores</p>
         <p className="sb-loc">
           <FiMapPin size={12} />
           Pampanga, Philippines
         </p>
 
-        {/* Actions */}
-        <button className="sb-btn-primary" onClick={() => window.location.href = links.email}>
-          <FiMail size={13} /> Send email
+        {/* Availability */}
+        <div className="sb-avail">
+          <div className="sb-avail-dot-wrap">
+            <div className="sb-avail-dot-ring" />
+            <div className="sb-avail-dot" />
+          </div>
+          <div className="sb-avail-text">
+            <p className="sb-avail-title">Available for freelance</p>
+            <p className="sb-avail-sub">Open to projects &amp; collaborations</p>
+          </div>
+          <FiArrowRight size={13} className="sb-avail-arrow" />
+        </div>
+
+        {/* Primary CTA */}
+        <button
+          className="sb-btn-hire"
+          onClick={() => (window.location.href = links.email)}
+        >
+          <FiMail size={14} />
+          Hire me
         </button>
+
+        {/* Secondary actions */}
         <div className="sb-btn-row">
           <button className="sb-btn-sec" onClick={() => setResumeModal(true)}>
-            <FiFileText size={12} /> Resume
+            <FiFileText size={12} />
+            Resume
           </button>
-          <button className="sb-btn-sec" onClick={() => open(links.linkedin)}>
-            <FiLinkedin size={12} /> LinkedIn
+          <button className="sb-btn-sec" onClick={() => open(links.github)}>
+            <FiGithub size={12} />
+            GitHub
           </button>
         </div>
 
         <hr className="sb-divider" />
 
         {/* Stats */}
-        <p className="sb-section-label">
-          <FiBarChart2 size={12} /> Overview
-        </p>
         <div className="sb-stats">
           <div className="sb-stat">
             <span className="sb-stat-num">3rd</span>
@@ -86,58 +104,63 @@ export default function Sidebar({ darkMode, setDarkMode }) {
             <span className="sb-stat-lbl">techs</span>
           </div>
         </div>
-        <div style={{ marginBottom: "12px", textAlign: "center" }}>
-          <span className="sb-status">
-            <span className="sb-status-dot" />
-            Open to work
-          </span>
-        </div>
-
-        <hr className="sb-divider" />
 
         {/* Goal */}
         <div className="sb-section">
           <p className="sb-section-head">
-            <FiTarget size={13} className="sb-section-icon purple" /> My goal
+            <FiTarget size={12} className="sb-section-icon teal" />
+            Goal
           </p>
           <p className="sb-section-body">
-            Become a Full Stack Web Developer, build scalable web applications,
-            and contribute to innovative tech projects that solve real-world problems.
+            Become a Full Stack Developer, build scalable web apps, and
+            contribute to tech projects that solve real-world problems.
           </p>
         </div>
 
-        {/* Social */}
+        <hr className="sb-divider" />
+
+        <hr className="sb-divider" />
+
+        {/* Connect & Contact */}
         <div className="sb-section">
           <p className="sb-section-head">
-            <FiLink size={13} className="sb-section-icon teal" /> Connect
+            <FiShare2 size={12} className="sb-section-icon blue" />
+            Connect
           </p>
           <ul className="sb-links">
             <li className="sb-link-item" onClick={() => open(links.github)}>
-              <FiGithub size={14} /> GitHub
+              <span className="sb-link-icon gh">
+                <FiGithub size={13} />
+              </span>
+              GitHub
             </li>
             <li className="sb-link-item" onClick={() => open(links.facebook)}>
-              <FiFacebook size={14} /> Facebook
+              <span className="sb-link-icon fb">
+                <FiFacebook size={13} />
+              </span>
+              Facebook
             </li>
             <li className="sb-link-item" onClick={() => open(links.instagram)}>
-              <FiInstagram size={14} /> Instagram
+              <span className="sb-link-icon ig">
+                <FiInstagram size={13} />
+              </span>
+              Instagram
+            </li>
+            <li className="sb-link-item sb-link-static">
+              <span className="sb-link-icon em">
+                <FiMail size={13} />
+              </span>
+              fjashleyrain@gmail.com
+            </li>
+            <li className="sb-link-item sb-link-static">
+              <span className="sb-link-icon ph">
+                <FiPhone size={13} />
+              </span>
+              +63 936 826 9722
             </li>
           </ul>
         </div>
 
-        {/* Contact */}
-        <div className="sb-section">
-          <p className="sb-section-head">
-            <FiMessageCircle size={13} className="sb-section-icon blue" /> Contact
-          </p>
-          <ul className="sb-links">
-            <li className="sb-link-item">
-              <FiMail size={14} /> fjashleyrain@gmail.com
-            </li>
-            <li className="sb-link-item">
-              <FiPhone size={14} /> +63 936 826 9722
-            </li>
-          </ul>
-        </div>
       </div>
 
       {/* Resume Modal */}
@@ -162,9 +185,13 @@ export default function Sidebar({ darkMode, setDarkMode }) {
                 download="Jashley_Rain_Flores_Resume.pdf"
                 className="sb-btn-dl"
               >
-                <FiDownload size={13} /> Download resume
+                <FiDownload size={13} />
+                Download resume
               </a>
-              <button className="sb-btn-sec sb-btn-full" onClick={() => setResumeModal(false)}>
+              <button
+                className="sb-btn-sec sb-btn-full"
+                onClick={() => setResumeModal(false)}
+              >
                 Close
               </button>
             </div>

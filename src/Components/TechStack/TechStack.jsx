@@ -1,17 +1,17 @@
 import { useState } from "react";
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,
-  FaPhp, FaFigma, FaGithub, FaSass
+  FaPhp, FaFigma, FaGithub, FaSass, FaRobot
 } from "react-icons/fa";
 import {
   SiTypescript, SiMongodb, SiExpress, SiMysql,
-  SiIonic, SiDiscord, SiJetbrains
+  SiIonic, SiDiscord, SiJetbrains, SiPostgresql
 } from "react-icons/si";
 import { VscCode } from "react-icons/vsc";
 import { TbApi } from "react-icons/tb";
 import "./TechStack.css";
 
-const TABS = ["All", "Frontend", "Backend", "Tools"];
+const TABS = ["All", "Frontend", "Backend", "Tools", "AI"];
 
 const DATA = {
   Frontend: [
@@ -30,6 +30,7 @@ const DATA = {
     { label: "MongoDB", icon: <SiMongodb color="#47A248" /> },
     { label: "Express.js", icon: <SiExpress color="#888888" /> },
     { label: "MySQL", icon: <SiMysql color="#4479A1" /> },
+    { label: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
     { label: "REST API", icon: <TbApi color="#6b7280" /> },
   ],
   Tools: [
@@ -40,14 +41,20 @@ const DATA = {
     { label: "PyCharm", icon: <SiJetbrains color="#21D789" /> },
     { label: "Discord", icon: <SiDiscord color="#5865F2" /> },
   ],
+  AI: [
+    { label: "ChatGPT", icon: <FaRobot color="#10A37F" /> },
+    { label: "Claude", icon: <FaRobot color="#D97757" /> },
+    { label: "Gemini", icon: <FaRobot color="#4285F4" /> },
+  ],
 };
 
-DATA.All = [...DATA.Frontend, ...DATA.Backend, ...DATA.Tools];
+DATA.All = [...DATA.Frontend, ...DATA.Backend, ...DATA.Tools, ...DATA.AI];
 
 const SECTIONS = [
   { label: "Front-end", key: "Frontend" },
   { label: "Back-end", key: "Backend" },
   { label: "Tools & environments", key: "Tools" },
+  { label: "AI Assistants", key: "AI" },
 ];
 
 function PillGrid({ items }) {
