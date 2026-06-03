@@ -2,7 +2,7 @@ import "./Projects.css";
 import { useState } from "react";
 import {
   FaCss3Alt, FaNodeJs, FaDatabase,
-  FaHtml5, FaJs, FaReact, FaServer, FaVial, FaPhp, FaMicrosoft
+  FaHtml5, FaJs, FaReact, FaVial, FaMicrosoft
 } from "react-icons/fa";
 import { FiExternalLink, FiX, FiArrowRight, FiLayers } from "react-icons/fi";
 

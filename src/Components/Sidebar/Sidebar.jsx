@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import {
   FiMoon, FiSun, FiMail, FiMapPin,
   FiGithub, FiFacebook, FiInstagram,
-  FiPhone, FiTarget, FiCode,
+  FiPhone, FiTarget,
   FiFileText, FiDownload, FiX,
   FiArrowRight, FiShare2
 } from "react-icons/fi";
