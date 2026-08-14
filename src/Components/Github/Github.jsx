@@ -1,4 +1,4 @@
-import { FiGithub, FiArrowRight } from "react-icons/fi";
+import { FiArrowRight } from "react-icons/fi";
 import { GitHubCalendar } from "react-github-calendar";
 import { motion } from "framer-motion";
 import "./Github.css";

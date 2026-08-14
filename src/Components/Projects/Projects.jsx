@@ -1,15 +1,11 @@
 import { useState } from "react";
 import { FiArrowRight, FiExternalLink, FiGithub, FiLayers } from "react-icons/fi";
-import { motion } from "framer-motion";
 import "./Projects.css";
 
 import gwa1 from "../../assets/gwa1.png";
 import rentgo1 from "../../assets/rentgo1.jpg";
 import rentgo2 from "../../assets/rentgo2.jpg";
 import rentgo3 from "../../assets/rentgo3.jpg";
-import rentgo4 from "../../assets/rentgo4.png";
-import rentgo5 from "../../assets/rentgo5.png";
-import rentgo6 from "../../assets/rentgo6.png";
 import lifeline1 from "../../assets/lifeline-web1.png";
 import lifeline2 from "../../assets/lifeline-web2.png";
 import lifeline3 from "../../assets/lifeline-web3.png";
