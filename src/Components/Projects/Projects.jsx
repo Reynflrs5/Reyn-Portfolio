@@ -1,220 +1,210 @@
-import "./Projects.css";
 import { useState } from "react";
-import {
-  FaCss3Alt, FaNodeJs, FaDatabase,
-  FaHtml5, FaJs, FaReact, FaVial, FaMicrosoft
-} from "react-icons/fa";
-import { FiExternalLink, FiX, FiArrowRight, FiLayers } from "react-icons/fi";
+import { FiArrowRight, FiExternalLink, FiGithub, FiLayers } from "react-icons/fi";
+import { motion } from "framer-motion";
+import "./Projects.css";
 
+import gwa1 from "../../assets/gwa1.png";
+import rentgo1 from "../../assets/rentgo1.jpg";
+import rentgo2 from "../../assets/rentgo2.jpg";
+import rentgo3 from "../../assets/rentgo3.jpg";
+import rentgo4 from "../../assets/rentgo4.png";
+import rentgo5 from "../../assets/rentgo5.png";
+import rentgo6 from "../../assets/rentgo6.png";
+import lifeline1 from "../../assets/lifeline-web1.png";
+import lifeline2 from "../../assets/lifeline-web2.png";
+import lifeline3 from "../../assets/lifeline-web3.png";
 import dmc1 from "../../assets/dmc-system1.jpg";
 import dmc2 from "../../assets/dmc-system2.jpg";
 import dmc3 from "../../assets/dmc-system3.jpg";
 
-const ACCENT_COLORS = ["#7F77DD", "#1D9E75", "#378ADD", "#D85A30", "#D4537E"];
-
 const projects = [
   {
     name: "GWA Calculator",
-    desc: "Compute your General Weighted Average",
-    detail:
-      "A clean, fast tool for students to compute their General Weighted Average across subjects. Built with React and powered by Vite for snappy load times. Deployed on Vercel.",
-    tech: [
-      { label: "React", icon: <FaReact color="#61DAFB" /> },
-      { label: "Vite", icon: <FaVial color="#646CFF" /> },
+    desc: "A clean, fast tool for students to compute their General Weighted Average in seconds — no spreadsheets, no manual math.",
+    features: [
+      "Instant GWA computation with unit-weighted grades",
+      "Save and revisit past semester records",
+      "Mobile-friendly, works on any device",
     ],
+    tags: ["#1 STUDENT TOOL", "WEB APP"],
+    tech: "React, Vite",
     status: "live",
-    statusText: "Live & deployed",
-    year: "2024",
     link: "https://gwa-calculator-reyn.vercel.app/",
-  },
-  {
-    name: "Lifeline Web Promotion",
-    desc: "Web promotion and marketing platform",
-    detail:
-      "A promotional website built for Lifeline featuring a responsive landing page and marketing sections. Pure HTML/CSS/JS stack with a focus on clean presentation and fast loading.",
-    tech: [
-      { label: "HTML5", icon: <FaHtml5 color="#E34F26" /> },
-      { label: "CSS3", icon: <FaCss3Alt color="#1572B6" /> },
-      { label: "JavaScript", icon: <FaJs color="#F7DF1E" /> },
-    ],
-    status: "inactive",
-    statusText: "No public link available",
-    year: "2023",
-    link: null,
-    images: [
-      "https://placehold.co/400x300?text=Lifeline+Promotion+1",
-      "https://placehold.co/400x300?text=Lifeline+Promotion+2",
-      "https://placehold.co/400x300?text=Lifeline+Promotion+3"
-    ],
+    github: "https://github.com/Reynflrs5",
+    image: gwa1,
+    images: [gwa1],
   },
   {
     name: "RentGo",
-    desc: "Car Rental Booking System",
-    detail:
-      "A full-stack car rental platform allowing users to browse vehicles, make bookings, and manage reservations. Features a React frontend, Node.js API server, and MySQL database.",
-    tech: [
-      { label: "React Native", icon: <FaReact color="#61DAFB" /> },
-      { label: "React (Admin)", icon: <FaReact color="#61DAFB" /> },
-      { label: "Node.js", icon: <FaNodeJs color="#3C873A" /> },
-      { label: "MySQL", icon: <FaDatabase color="#4479A1" /> },
+    desc: "A full-stack car rental booking system for mobile and web.",
+    longDesc: "Car Rental Management System is a digital platform designed to make vehicle renting faster, easier, and more organized. Instead of relying on manual reservations, phone calls, or messaging, users can register, browse available cars, select their preferred vehicle, make a reservation, choose a payment method, and receive booking confirmation online. For administrators or car owners, the system provides centralized management of vehicles, users, bookings, payments, and reports.",
+    features: [
+      "User Registration & Login – Secure account access for renters",
+      "Car Browsing – View available vehicles and their details",
+      "Online Booking – Reserve a car through the system",
+      "Payment Management – Process and track rental payments",
+      "Booking Confirmation – Receive confirmation after a successful reservation",
+      "Cancel/Reschedule – Manage and modify existing bookings",
+      "Car Management – Admin can add, edit, and manage rental vehicles",
+      "Booking Management – Admin can monitor and manage reservations",
+      "User Management – Admin can manage registered users",
+      "Reports & Analytics – View bookings, revenue, and rental statistics"
     ],
-    status: "wip",
-    statusText: "In progress — not yet deployed",
-    year: "2024",
-    link: null,
-    images: [
-      "https://placehold.co/400x300?text=RentGo+1",
-      "https://placehold.co/400x300?text=RentGo+2",
-      "https://placehold.co/400x300?text=RentGo+3"
+    tags: ["FULL STACK", "MANAGEMENT"],
+    tech: "React Native, Node.js, MySQL",
+    status: "live",
+    link: "#",
+    github: "https://github.com/Reynflrs5",
+    image: rentgo1,
+    images: [rentgo1, rentgo2, rentgo3],
+  },
+  {
+    name: "Lifeline Promotion",
+    desc: "A responsive web promotion and marketing platform designed to convert visitors with fast-loading, mobile-first landing pages.",
+    features: [
+      "Custom responsive landing pages",
+      "Optimized for speed and mobile-first browsing",
+      "Marketing-focused layout and CTAs",
     ],
+    tags: ["LANDING PAGE", "MARKETING"],
+    tech: "HTML, CSS, JS",
+    status: "live",
+    link: "#",
+    github: "https://github.com/Reynflrs5",
+    image: lifeline1,
+    images: [lifeline1, lifeline2, lifeline3],
   },
   {
     name: "DMC Property System",
-    desc: "Equipment borrowing & tracking system",
-    detail:
-      "An internal property management system for DMC campus. Allows staff to log equipment borrowing, track availability, and generate usage reports.",
-    tech: [
-      { label: "VB.NET", icon: <FaMicrosoft color="#0078D4" /> },
-      { label: "MySQL", icon: <FaDatabase color="#4479A1" /> },
+    desc: "An internal property management system for DMC campus equipment.",
+    longDesc: "The DMC Property Management System is a desktop application developed using VB.NET and MySQL to help manage and monitor university-owned properties at the Mexico Campus. The system digitizes the traditional manual process of recording, borrowing, returning, and reporting damaged school properties. It uses barcode technology to make item identification and tracking faster and more accurate. Authorized staff can register new items, monitor inventory, process borrowing and returning transactions, and report damaged equipment — with every transaction recorded for complete history and status tracking.",
+    features: [
+      "Login & User Registration – Secure access for authorized staff",
+      "Dashboard – View total, available, borrowed, returned, and damaged items",
+      "Inventory Management – Add, edit, delete, search, and filter properties",
+      "Barcode System – Generate and scan barcodes for easy item tracking",
+      "Borrow & Return – Record and monitor borrowed and returned items",
+      "Damage Reporting – Report and manage damaged properties",
+      "Transaction Logs – Keep records of all borrowing, returning, and damage activities",
+      "Department Filtering – View items according to their assigned department",
     ],
-    status: "inactive",
-    statusText: "Internal use — no public link",
-    year: "2023",
-    link: null,
+    tags: ["INTERNAL SYSTEM", "DESKTOP"],
+    tech: "VB.NET, MySQL",
+    status: "internal",
+    link: "#",
+    github: "https://github.com/Reynflrs5",
+    image: dmc1,
     images: [dmc1, dmc2, dmc3],
   },
 ];
 
-export default function Projects({ darkMode }) {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [open, setOpen] = useState(false);
+export default function Projects({ onViewAll, onViewDetails }) {
+  const [activeIndex, setActiveIndex] = useState(0);
 
-  const openModal = (p) => {
-    setSelectedProject(p);
-    setOpen(true);
+  const nextProject = () => {
+    setActiveIndex((prev) => (prev + 1) % projects.length);
   };
 
-  const closeModal = () => setOpen(false);
-
-  const idx = projects.indexOf(selectedProject);
-  const accent = ACCENT_COLORS[idx] ?? ACCENT_COLORS[0];
+  const prevProject = () => {
+    setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
 
   return (
-    <div className={`pc-card ${darkMode ? "dark" : ""}`}>
-      {/* Header */}
-      <div className="pc-header">
-        <div className="pc-header-left">
-          <div className="pc-icon-wrap">
-            <FiLayers size={15} />
-          </div>
-          <h3 className="pc-title">Recent Projects</h3>
-        </div>
-        <span className="pc-badge">{projects.length} projects</span>
+    <div className="projects-section">
+      <div className="projects-header">
+        <h2 className="projects-title">02 — projects</h2>
+        <button className="projects-all-btn" onClick={onViewAll}>
+          ALL PROJECTS <FiArrowRight />
+        </button>
       </div>
 
-      {/* List */}
-      <div className="pc-list">
-        {projects.map((p, i) => (
-          <div
-            key={p.name}
-            className="pc-item"
-            style={{ "--accent": ACCENT_COLORS[i] }}
-            onClick={() => openModal(p)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => e.key === "Enter" && openModal(p)}
-          >
-            <div className="pc-item-body">
-              <p className="pc-item-name">{p.name}</p>
-              <p className="pc-item-desc">{p.desc}</p>
-            </div>
-            <div className="pc-tech-pills">
-              {p.tech.slice(0, 2).map((t) => (
-                <span key={t.label} className="pc-tech-pill">
-                  {t.label}
-                </span>
-              ))}
-            </div>
-            <FiArrowRight className="pc-arrow" size={14} />
-          </div>
-        ))}
-      </div>
+      <div className="projects-carousel-container">
+        {projects.map((project, index) => {
+          // Determine relative position
+          let diff = index - activeIndex;
+          if (diff < -1) diff += projects.length;
+          if (diff > 1) diff -= projects.length;
 
-      {/* Modal */}
-      {open && selectedProject && (
-        <div
-          className={`pc-overlay open ${darkMode ? "dark" : ""}`}
-          onClick={(e) => e.target === e.currentTarget && closeModal()}
-        >
-          <div className="pc-modal">
-            <div className="pc-modal-header">
-              <div
-                className="pc-modal-accent"
-                style={{ color: accent, borderColor: accent + "33" }}
-              >
-                <FiLayers size={18} />
-              </div>
-              <button className="pc-modal-close" onClick={closeModal}>
-                <FiX size={14} />
-              </button>
-            </div>
+          if (Math.abs(diff) > 1) return null; // Only show 3 cards (center, left, right)
 
-            <p className="pc-modal-name">{selectedProject.name}</p>
-            <p className="pc-modal-desc">{selectedProject.desc}</p>
+          const isCenter = diff === 0;
+          const isLeft = diff === -1;
+          const isRight = diff === 1;
 
-            <hr className="pc-divider" />
+          let transform = "translateX(-50%) translateY(-50%)";
+          let zIndex = 1;
+          let opacity = 1;
 
-            {selectedProject.images && selectedProject.images.length > 0 && (
-              <>
-                <p className="pc-section-label">gallery</p>
-                <div className="pc-modal-gallery" style={{ display: "flex", gap: "10px", overflowX: "auto", marginBottom: "15px", paddingBottom: "5px" }}>
-                  {selectedProject.images.map((imgSrc, idx) => (
-                    <img
-                      key={idx}
-                      src={imgSrc}
-                      alt={`${selectedProject.name} screenshot ${idx + 1}`}
-                      style={{ width: "200px", height: "120px", objectFit: "cover", borderRadius: "8px", flexShrink: 0 }}
-                    />
-                  ))}
-                </div>
-              </>
-            )}
+          if (isCenter) {
+            transform = "translateX(-50%) translateY(-50%) scale(1) rotate(0deg)";
+            zIndex = 3;
+          } else if (isLeft) {
+            transform = "translateX(-110%) translateY(-40%) scale(0.85) rotate(-8deg)";
+            zIndex = 2;
+            opacity = 0.7;
+          } else if (isRight) {
+            transform = "translateX(10%) translateY(-40%) scale(0.85) rotate(8deg)";
+            zIndex = 2;
+            opacity = 0.7;
+          }
 
-            <p className="pc-section-label">about</p>
-            <p className="pc-detail-text">{selectedProject.detail}</p>
-
-            <p className="pc-section-label">tech stack</p>
-            <div className="pc-stack-pills">
-              {selectedProject.tech.map((t) => (
-                <span key={t.label} className="pc-stack-pill">
-                  <span className="pc-stack-icon">{t.icon}</span>
-                  {t.label}
-                </span>
-              ))}
-            </div>
-
-            <p className="pc-section-label">status</p>
-            <div className="pc-status-row">
-              <span className={`pc-status-dot ${selectedProject.status}`} />
-              <span className="pc-status-text">{selectedProject.statusText}</span>
-              <span className="pc-year">{selectedProject.year}</span>
-            </div>
-
-
-            <a
-              href={selectedProject.link ?? "#"}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`pc-modal-link ${!selectedProject.link ? "disabled" : ""}`}
-              onClick={(e) => !selectedProject.link && e.preventDefault()}
+          return (
+            <div
+              key={project.name}
+              className={`project-card ${isCenter ? "active" : ""}`}
+              style={{
+                transform,
+                zIndex,
+                opacity,
+              }}
+              onClick={() => {
+                if (isLeft) prevProject();
+                if (isRight) nextProject();
+              }}
             >
-              <FiExternalLink size={14} />
-              View live project
-            </a>
-          </div>
-        </div>
-      )
-      }
-    </div >
+              <div className="project-tags">
+                {project.tags.map((tag, i) => (
+                  <span key={i} className="project-tag">
+                    {i === 0 ? <FiLayers size={10} style={{ marginRight: 4 }} /> : null}
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="project-main">
+                <div className="project-image">
+                  <img src={project.image} alt={project.name} />
+                </div>
+                <div className="project-info">
+                  <h3 className="project-name">{project.name}</h3>
+                  <p className="project-desc">{project.desc}</p>
+                </div>
+              </div>
+
+              <div className="project-actions">
+                {project.link !== "#" ? (
+                  <a href={project.link} className="project-btn btn-dark" target="_blank" rel="noreferrer">
+                    Live Site <FiExternalLink size={14} />
+                  </a>
+                ) : (
+                  <button 
+                    className="project-btn btn-dark" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onViewDetails(project);
+                    }}
+                  >
+                    View Details <FiArrowRight size={14} />
+                  </button>
+                )}
+                <a href={project.github} className="project-btn btn-outline" target="_blank" rel="noreferrer">
+                  GitHub <FiGithub size={14} />
+                </a>
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    </div>
   );
 }

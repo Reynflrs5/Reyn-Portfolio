@@ -1,15 +1,47 @@
 import { useState } from "react";
 import {
   FaHtml5, FaCss3Alt, FaJs, FaReact, FaNodeJs,
-  FaPhp, FaFigma, FaGithub, FaSass, FaRobot
+  FaPhp, FaFigma, FaGithub, FaSass
 } from "react-icons/fa";
 import {
   SiTypescript, SiMongodb, SiExpress, SiMysql,
-  SiIonic, SiDiscord, SiJetbrains, SiPostgresql
+  SiIonic, SiDiscord, SiIntellijidea, SiPycharm,
+  SiPostgresql, SiOpenai, SiVisualstudiocode
 } from "react-icons/si";
-import { VscCode } from "react-icons/vsc";
 import { TbApi } from "react-icons/tb";
 import "./TechStack.css";
+
+/* ─────────────────────────────────────────────
+   Custom inline icons — used when a brand icon
+   isn't (yet) available in react-icons/simple-icons.
+   No external dependency, always renders.
+───────────────────────────────────────────── */
+function ClaudeIcon({ color = "#D97757", size = 16 }) {
+  // stylized sunburst/asterisk mark
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="none">
+      <g stroke={color} strokeWidth="2" strokeLinecap="round">
+        <line x1="12" y1="2" x2="12" y2="9" />
+        <line x1="12" y1="15" x2="12" y2="22" />
+        <line x1="2" y1="12" x2="9" y2="12" />
+        <line x1="15" y1="12" x2="22" y2="12" />
+        <line x1="4.9" y1="4.9" x2="9.5" y2="9.5" />
+        <line x1="14.5" y1="14.5" x2="19.1" y2="19.1" />
+        <line x1="19.1" y1="4.9" x2="14.5" y2="9.5" />
+        <line x1="9.5" y1="14.5" x2="4.9" y2="19.1" />
+      </g>
+    </svg>
+  );
+}
+
+function GeminiIcon({ color = "#4285F4", size = 16 }) {
+  // stylized four-point star mark
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill={color}>
+      <path d="M12 2C12 8.5 8.5 12 2 12C8.5 12 12 15.5 12 22C12 15.5 15.5 12 22 12C15.5 12 12 8.5 12 2Z" />
+    </svg>
+  );
+}
 
 const TABS = ["All", "Frontend", "Backend", "Tools", "AI"];
 
@@ -28,23 +60,23 @@ const DATA = {
     { label: "Node.js", icon: <FaNodeJs color="#339933" /> },
     { label: "PHP", icon: <FaPhp color="#777BB4" /> },
     { label: "MongoDB", icon: <SiMongodb color="#47A248" /> },
-    { label: "Express.js", icon: <SiExpress color="#888888" /> },
+    { label: "Express.js", icon: <SiExpress color="#ffffff" /> },
     { label: "MySQL", icon: <SiMysql color="#4479A1" /> },
     { label: "PostgreSQL", icon: <SiPostgresql color="#336791" /> },
-    { label: "REST API", icon: <TbApi color="#6b7280" /> },
+    { label: "REST API", icon: <TbApi color="#9ca3af" /> },
   ],
   Tools: [
     { label: "Figma", icon: <FaFigma color="#F24E1E" /> },
-    { label: "VSCode", icon: <VscCode color="#0078D7" /> },
-    { label: "GitHub", icon: <FaGithub color="#888780" /> },
-    { label: "IntelliJ", icon: <SiJetbrains color="#fe2857" /> },
-    { label: "PyCharm", icon: <SiJetbrains color="#21D789" /> },
+    { label: "VSCode", icon: <SiVisualstudiocode color="#007ACC" /> },
+    { label: "GitHub", icon: <FaGithub color="#ffffff" /> },
+    { label: "IntelliJ", icon: <SiIntellijidea color="#fe2857" /> },
+    { label: "PyCharm", icon: <SiPycharm color="#21D789" /> },
     { label: "Discord", icon: <SiDiscord color="#5865F2" /> },
   ],
   AI: [
-    { label: "ChatGPT", icon: <FaRobot color="#10A37F" /> },
-    { label: "Claude", icon: <FaRobot color="#D97757" /> },
-    { label: "Gemini", icon: <FaRobot color="#4285F4" /> },
+    { label: "ChatGPT", icon: <SiOpenai color="#10A37F" /> },
+    { label: "Claude", icon: <ClaudeIcon color="#D97757" /> },
+    { label: "Gemini", icon: <GeminiIcon color="#4285F4" /> },
   ],
 };
 
@@ -70,12 +102,12 @@ function PillGrid({ items }) {
   );
 }
 
-export default function TechStack({ darkMode }) {
+export default function TechStack() {
   const [active, setActive] = useState("All");
   const items = DATA[active];
 
   return (
-    <div className={`ts-card ${darkMode ? "dark" : ""}`}>
+    <div className="ts-card">
       {/* Header */}
       <div className="ts-header">
         <div className="ts-header-left">

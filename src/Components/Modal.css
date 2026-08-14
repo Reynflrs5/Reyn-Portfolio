@@ -1,32 +1,29 @@
 .modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.7);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 999;
   animation: fadeIn 0.2s ease;
-  padding: 12px; /* added padding for smaller screens */
+  padding: 24px;
 }
 
 .modal-card {
-  width: 420px;
-  max-width: 100%; /* allow full width on small screens */
-  background: #fff;
+  width: 800px;
+  max-width: 100%;
+  background: linear-gradient(180deg, #1a1a1c, #000000);
+  border: 1px solid var(--chrome-line);
   border-radius: 18px;
-  padding: 22px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.2);
+  padding: 32px;
+  box-shadow: 0 0 40px var(--chrome-glow);
   position: relative;
   animation: slideUp 0.25s ease;
   box-sizing: border-box;
-}
-
-/* DARK MODE */
-.modal-card.dark {
-  background: #0f172a;
-  color: #e5e7eb;
-  border: 1px solid #1f2937;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
 }
 
 /* CLOSE BUTTON */
@@ -34,51 +31,54 @@
   position: absolute;
   top: 16px;
   right: 16px;
-  border: none;
+  border: 1px solid var(--chrome-line);
   background: transparent;
   font-size: 16px;
   cursor: pointer;
-  color: #111827; /* default X color */
+  color: var(--chrome-1);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
 }
 
-.modal-card.dark .modal-close {
-  color: #0f172a; /* dark X icon in dark mode */
+.modal-close:hover {
+  box-shadow: 0 0 8px var(--chrome-glow);
 }
 
 .modal-header h3 {
   margin: 0;
   font-size: 18px;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--chrome-1);
 }
 
 .modal-header p {
   margin: 6px 0 0;
-  color: #6b7280;
+  color: var(--chrome-2);
   font-size: 13px;
-}
-
-.modal-card.dark .modal-header p {
-  color: #cbd5e1;
+  font-family: 'DM Sans', sans-serif;
 }
 
 .modal-tech {
-  margin-top: 18px;
+  margin-top: 24px;
   display: flex;
-  gap: 10px;
+  gap: 8px;
   flex-wrap: wrap;
 }
 
 .modal-tech-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: #f3f4f6;
-}
-
-.modal-card.dark .modal-tech-icon {
-  background: #ffffff; /* white container in dark mode */
+  padding: 6px 14px;
+  border-radius: 20px;
+  background: var(--chrome-bg-solid);
+  border: 1px solid var(--chrome-line);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--chrome-2);
+  font-weight: 500;
 }
 
 .modal-actions {
@@ -89,28 +89,25 @@
   display: inline-block;
   padding: 10px 16px;
   border-radius: 12px;
-  background: #111827;
-  color: #fff;
+  background: linear-gradient(180deg, #e8e8ea, #c7c9cd);
+  color: var(--chrome-bg-solid);
   font-weight: 700;
   text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  transition: all 0.2s;
 }
 
-.modal-card.dark .modal-btn {
-  background: #e5e7eb;
-  color: #0f172a;
+.modal-btn:hover {
+  box-shadow: 0 0 10px var(--chrome-glow);
 }
 
 .modal-msg {
   padding: 10px 12px;
   border-radius: 12px;
-  background: #f3f4f6;
-  color: #111827;
+  background: var(--chrome-bg-solid);
+  border: 1px solid var(--chrome-line);
+  color: var(--chrome-2);
   font-size: 13px;
-}
-
-.modal-card.dark .modal-msg {
-  background: #1f2937;
-  color: #e5e7eb;
 }
 
 /* ===== Responsive ===== */
@@ -119,23 +116,11 @@
     width: 100%;
     padding: 18px;
   }
-  .modal-header h3 {
-    font-size: 16px;
-  }
-  .modal-header p {
-    font-size: 12px;
-  }
-  .modal-tech-icon {
-    width: 32px;
-    height: 32px;
-  }
-  .modal-btn {
-    padding: 8px 12px;
-    font-size: 14px;
-  }
-  .modal-msg {
-    font-size: 12px;
-  }
+  .modal-header h3 { font-size: 16px; }
+  .modal-header p { font-size: 12px; }
+  .modal-tech-icon { padding: 4px 12px; font-size: 11px; }
+  .modal-btn { padding: 8px 12px; font-size: 14px; }
+  .modal-msg { font-size: 12px; }
 }
 
 @media (max-width: 480px) {
@@ -143,23 +128,11 @@
     width: 100%;
     padding: 14px;
   }
-  .modal-header h3 {
-    font-size: 15px;
-  }
-  .modal-header p {
-    font-size: 11px;
-  }
-  .modal-tech-icon {
-    width: 28px;
-    height: 28px;
-  }
-  .modal-btn {
-    padding: 6px 10px;
-    font-size: 13px;
-  }
-  .modal-msg {
-    font-size: 11px;
-  }
+  .modal-header h3 { font-size: 15px; }
+  .modal-header p { font-size: 11px; }
+  .modal-tech-icon { padding: 4px 10px; font-size: 10px; }
+  .modal-btn { padding: 6px 10px; font-size: 13px; }
+  .modal-msg { font-size: 11px; }
 }
 
 /* Animations */

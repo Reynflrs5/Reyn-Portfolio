@@ -1,19 +1,24 @@
 .profile-page {
-  display: grid;
-  grid-template-columns: 320px 1fr;
-  gap: 24px;
-  padding: 24px;
-  background: #f4f6f8;
+  display: block;
+  padding: 0;
+  background: transparent; /* ice layer shows through */
   min-height: 100vh;
-  font-family: "Inter", sans-serif;
-  align-items: start;
+  font-family: 'DM Sans', sans-serif;
+  position: relative;
+  z-index: 1;
 }
 
 .profile-main {
   display: flex;
   flex-direction: column;
-  gap: 24px;
-  min-width: 0; /* prevent overflow */
+  gap: 0;
+  min-width: 0;
+  margin-left: 280px;
+  padding: 32px 48px 80px 48px;
+  border-left: 1px solid var(--chrome-line);
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
 }
 
 .grid-2 {
@@ -24,6 +29,11 @@
 
 /* ── Large tablet ── */
 @media (max-width: 1024px) {
+  .profile-main {
+    margin-left: 220px;
+    padding: 24px;
+  }
+
   .profile-page {
     grid-template-columns: 1fr;
     padding: 16px;
@@ -36,8 +46,37 @@
   }
 }
 
+/* ── Mobile Menu Button ── */
+.mobile-menu-btn {
+  display: none;
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 90;
+  background: var(--chrome-bg-solid);
+  border: 1px solid var(--chrome-line);
+  color: var(--chrome-1);
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+}
+
 /* ── Small tablet / large phone ── */
 @media (max-width: 768px) {
+  .mobile-menu-btn {
+    display: flex;
+  }
+  
+  .profile-main {
+    margin-left: 0;
+    border-left: none;
+    padding-top: 72px; /* Make room for hamburger btn */
+  }
+
   .profile-page {
     padding: 12px;
     gap: 12px;
@@ -81,7 +120,7 @@
 }
 .sidebar-extra {
   margin-top: 20px;
-  border-top: 1px solid #ccc;
+  border-top: 1px solid var(--chrome-line);
   padding-top: 20px;
   display: flex;
   flex-direction: column;
@@ -91,13 +130,13 @@
 .extra-section h3 {
   font-size: 1.1rem;
   margin-bottom: 8px;
-  color: #0B092B;
+  color: var(--chrome-1);
 }
 
 .extra-section p {
   margin: 0;
   font-size: 0.95rem;
-  color: #333;
+  color: var(--chrome-2);
 }
 
 .extra-section ul {
@@ -114,6 +153,7 @@
   align-items: center;
   gap: 8px;
   font-size: 0.95rem;
+  color: var(--chrome-2);
 }
 
 .extra-section a {
@@ -123,4 +163,5 @@
 
 .extra-section a:hover {
   text-decoration: underline;
+  text-shadow: 0 0 8px var(--chrome-glow);
 }

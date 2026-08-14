@@ -1,26 +1,62 @@
 /* =========================
    Global Base Reset
 ========================= */
+:root {
+  --chrome-bg: #0a0a0a;
+  --chrome-bg-solid: #000000;
+  --chrome-1: #e8e8ea;
+  --chrome-2: #c7c9cd;
+  --chrome-3: #8e9096;
+  --chrome-line: #3a3b3f;
+  --chrome-glow: rgba(232, 232, 234, 0.35);
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
-html, body {
+html {
   margin: 0;
   padding: 0;
-  overflow-x: hidden;  /* prevent horizontal scroll on mobile */
   width: 100%;
+  background-color: #000000; /* fallback behind ice layer */
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: clip;
+  font-family: 'IBM Plex Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: var(--chrome-2);
+  /* Transparent so the fixed ice background layer shows through */
+  background-color: transparent;
+}
+
+/* Ensure React root sits above the fixed ice layer */
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'DM Sans', sans-serif;
+  background: linear-gradient(135deg, #ffffff 0%, #c7c9cd 45%, #8e9096 70%, #e8e8ea 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+p, span, li, a {
+  color: var(--chrome-2);
+}
+
+svg {
+  color: currentColor;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: 'IBM Plex Mono', source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

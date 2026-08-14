@@ -1,0 +1,239 @@
+/* ============================================================
+   ICE BACKGROUND — Modern "Ice Bling" Edition
+   Fixed layer behind all content, z-index: 0, pointer-events: none
+   ============================================================ */
+
+.ice-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: #000000;
+}
+
+/* ── Canvas (dust + shards + flares) ── */
+.ice-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* ── Cold glow accents ──
+   Brighter + a third center pulse for more presence
+── */
+.ice-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.ice-glow--tl {
+  top: -18%;
+  left: -12%;
+  width: 58vw;
+  height: 58vw;
+  background: radial-gradient(ellipse at center,
+      rgba(200, 220, 255, 0.11) 0%,
+      rgba(180, 205, 240, 0.06) 40%,
+      transparent 72%);
+  animation: icePulse 7s ease-in-out infinite alternate;
+}
+
+.ice-glow--br {
+  bottom: -20%;
+  right: -14%;
+  width: 50vw;
+  height: 50vw;
+  background: radial-gradient(ellipse at center,
+      rgba(200, 220, 255, 0.09) 0%,
+      rgba(180, 205, 240, 0.05) 40%,
+      transparent 72%);
+  animation: icePulse 10s ease-in-out infinite alternate-reverse;
+}
+
+.ice-glow--center {
+  top: 50%;
+  left: 50%;
+  width: 40vw;
+  height: 40vw;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(ellipse at center,
+      rgba(232, 232, 234, 0.05) 0%,
+      rgba(200, 220, 255, 0.025) 45%,
+      transparent 75%);
+  animation: icePulse 14s ease-in-out infinite alternate;
+}
+
+@keyframes icePulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+
+  100% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+.ice-glow--center {
+  animation-name: icePulseCenter;
+}
+
+@keyframes icePulseCenter {
+  0% {
+    opacity: 0.4;
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  100% {
+    opacity: 0.85;
+    transform: translate(-50%, -50%) scale(1.15);
+  }
+}
+
+/* ── Shimmer sweeps ──
+   Brighter, more frequent, three staggered passes for a
+   layered "light hitting ice" effect.
+── */
+.ice-shimmer {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 30vw;
+  background: linear-gradient(105deg,
+      transparent 0%,
+      rgba(232, 232, 234, 0.05) 42%,
+      rgba(235, 242, 255, 0.09) 50%,
+      rgba(232, 232, 234, 0.05) 58%,
+      transparent 100%);
+  transform: translateX(-40vw) skewX(-12deg);
+  pointer-events: none;
+}
+
+.ice-shimmer--1 {
+  animation: shimmerSweep 14s ease-in-out infinite;
+  animation-delay: 0s;
+}
+
+.ice-shimmer--2 {
+  width: 22vw;
+  opacity: 0.7;
+  animation: shimmerSweep 20s ease-in-out infinite;
+  animation-delay: -7s;
+}
+
+.ice-shimmer--3 {
+  width: 14vw;
+  opacity: 0.5;
+  animation: shimmerSweep 26s ease-in-out infinite;
+  animation-delay: -15s;
+}
+
+@keyframes shimmerSweep {
+  0% {
+    transform: translateX(-40vw) skewX(-12deg);
+  }
+
+  42% {
+    transform: translateX(140vw) skewX(-12deg);
+  }
+
+  43% {
+    transform: translateX(-40vw) skewX(-12deg);
+  }
+
+  100% {
+    transform: translateX(-40vw) skewX(-12deg);
+  }
+}
+
+/* ── Crystalline texture overlay ── */
+.ice-crystal-texture {
+  position: absolute;
+  inset: 0;
+  opacity: 0.055;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cg stroke='%23c7c9cd' stroke-width='0.5' fill='none' opacity='0.9'%3E%3Cpolygon points='100,60 120,80 120,110 100,130 80,110 80,80' /%3E%3Cline x1='100' y1='60' x2='100' y2='20' /%3E%3Cline x1='120' y1='80' x2='152' y2='62' /%3E%3Cline x1='120' y1='110' x2='152' y2='128' /%3E%3Cline x1='100' y1='130' x2='100' y2='170' /%3E%3Cline x1='80' y1='110' x2='48' y2='128' /%3E%3Cline x1='80' y1='80' x2='48' y2='62' /%3E%3Cline x1='100' y1='20' x2='88' y2='8' /%3E%3Cline x1='100' y1='20' x2='112' y2='8' /%3E%3Cline x1='152' y1='62' x2='164' y2='50' /%3E%3Cline x1='152' y1='62' x2='166' y2='72' /%3E%3Cline x1='152' y1='128' x2='166' y2='118' /%3E%3Cline x1='152' y1='128' x2='164' y2='140' /%3E%3Cline x1='100' y1='170' x2='88' y2='182' /%3E%3Cline x1='100' y1='170' x2='112' y2='182' /%3E%3Cline x1='48' y1='128' x2='36' y2='118' /%3E%3Cline x1='48' y1='128' x2='34' y2='140' /%3E%3Cline x1='48' y1='62' x2='36' y2='72' /%3E%3Cline x1='48' y1='62' x2='34' y2='50' /%3E%3C/g%3E%3C/svg%3E");
+  background-size: 220px 220px;
+  background-repeat: repeat;
+  animation: crystalDrift 60s linear infinite;
+}
+
+@keyframes crystalDrift {
+  0% {
+    background-position: 0 0;
+  }
+
+  100% {
+    background-position: 220px 220px;
+  }
+}
+
+/* ── Vignette ──
+   Keeps corners/edges pure black so content stays readable
+   and the glow/particles feel like they're floating in depth.
+── */
+.ice-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center,
+      transparent 35%,
+      rgba(0, 0, 0, 0.55) 85%,
+      rgba(0, 0, 0, 0.85) 100%);
+  pointer-events: none;
+}
+
+/* ── Frosted glass helpers ──
+   Apply to any card/panel for frosted-glass-over-ice look
+── */
+.frost-glass {
+  background: rgba(10, 10, 10, 0.72) !important;
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+  border: 1px solid rgba(232, 232, 234, 0.08);
+}
+
+.frost-glass-light {
+  background: rgba(26, 26, 28, 0.60) !important;
+  backdrop-filter: blur(10px) saturate(1.1);
+  -webkit-backdrop-filter: blur(10px) saturate(1.1);
+  border: 1px solid rgba(232, 232, 234, 0.06);
+}
+
+/* ── Respect prefers-reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+
+  .ice-glow--tl,
+  .ice-glow--br,
+  .ice-glow--center {
+    animation: none;
+  }
+
+  .ice-shimmer--1,
+  .ice-shimmer--2,
+  .ice-shimmer--3 {
+    display: none;
+  }
+
+  .ice-crystal-texture {
+    animation: none;
+  }
+
+  /* Canvas JS animation also bails out early (checked in JS) */
+}
+
+/* ── Mobile perf tweak: slightly reduce glow size/blur cost ── */
+@media (max-width: 768px) {
+
+  .ice-glow--tl,
+  .ice-glow--br,
+  .ice-glow--center {
+    filter: none;
+  }
+
+  .ice-crystal-texture {
+    opacity: 0.035;
+  }
+}

@@ -1,0 +1,77 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+
+.gh-section {
+  padding: 20px 0 40px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Header */
+.gh-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.gh-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--chrome-1);
+  margin: 0;
+}
+
+.gh-link-btn {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: var(--chrome-2);
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s;
+}
+
+.gh-link-btn:hover {
+  color: var(--chrome-1);
+  text-shadow: 0 0 8px var(--chrome-glow);
+}
+
+/* Calendar wrapper */
+.gh-calendar-wrap {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px;
+  border: 1px solid var(--chrome-line);
+  border-radius: 16px;
+  background: linear-gradient(180deg, #1a1a1c, #000000);
+}
+
+/* Make calendar fill the width */
+.gh-calendar-wrap .react-activity-calendar {
+  width: 100% !important;
+}
+
+.gh-calendar-wrap svg {
+  width: 100% !important;
+  height: auto !important;
+}
+
+/* Force text and legends in the calendar */
+.gh-calendar-wrap text {
+  fill: var(--chrome-2) !important;
+}
+
+.gh-calendar-wrap, 
+.gh-calendar-wrap span, 
+.gh-calendar-wrap div,
+.gh-calendar-wrap p,
+.gh-calendar-wrap strong {
+  color: var(--chrome-2) !important;
+}

@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import "./Chatbot.css";
 import reynImg from "../../assets/reynimg.png";
+import aiIcon from "../../assets/ai-icon (1).png";
 
 // ── Neural AI Icon — custom SVG brain/network ──────────────────
 const AiNeuralIcon = ({ size = 26 }) => (
@@ -76,7 +77,7 @@ const SUGGESTIONS = [
   "How can I contact you?",
 ];
 
-function Chatbot({ darkMode }) {
+function Chatbot() {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState(() => {
     const saved = localStorage.getItem("chatMessages");
@@ -198,14 +199,16 @@ function Chatbot({ darkMode }) {
     <>
       {/* ── FAB ── */}
       {!isOpen && (
-        <button
-          className={`chatbot-fab${darkMode ? " dark" : ""}`}
-          onClick={() => setIsOpen(true)}
-          aria-label="Open AI chat"
-        >
+        <div className="chatbot-fab-wrap">
           <span className="fab-pulse" />
-          <AiNeuralIcon size={28} />
-        </button>
+          <button
+            className="chatbot-fab"
+            onClick={() => setIsOpen(true)}
+            aria-label="Open AI chat"
+          >
+            <img src={aiIcon} alt="AI" className="fab-ai-icon" />
+          </button>
+        </div>
       )}
 
       {/* ── Chat Window ── */}
@@ -218,7 +221,7 @@ function Chatbot({ darkMode }) {
           aria-label="AI Chatbot"
         >
           <div
-            className={`chatbot-box${darkMode ? " dark" : ""}`}
+            className="chatbot-box"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -237,7 +240,7 @@ function Chatbot({ darkMode }) {
                   <span className="online-dot" />
                 </div>
                 <div className="bot-info">
-                  <span className="bot-name">Reyn AI</span>
+                  <span className="bot-name">Chatbot</span>
                   <span className="bot-status">
                     <span className="status-dot" />
                     Online · Replies instantly

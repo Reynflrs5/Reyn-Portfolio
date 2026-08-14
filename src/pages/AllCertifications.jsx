@@ -1,7 +1,8 @@
-import { FiArrowRight } from "react-icons/fi";
+import { FiArrowLeft } from "react-icons/fi";
 import { motion } from "framer-motion";
-import doc1 from "../../assets/doc1.png";
-import "./Certifications.css";
+import doc1 from "../assets/doc1.png";
+import "./AllProjects.css";
+import "../Components/Certifications/Certifications.css"; // Reuse card grid styling
 
 const certs = [
   {
@@ -12,28 +13,24 @@ const certs = [
   },
 ];
 
-export default function Certifications({ onViewAll }) {
+export default function AllCertifications({ onBack }) {
   return (
-    <div className="cert-section">
-      {/* Header */}
-      <div className="cert-header">
-        <h2 className="cert-label">04 — certifications</h2>
-        <button className="cert-link-btn" onClick={onViewAll}>
-          ALL CERTIFICATIONS <FiArrowRight size={12} />
+    <motion.div
+      className="all-projects-page"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      exit={{ opacity: 0, y: 20 }}
+    >
+      <div className="ap-header">
+        <button className="ap-back-btn" onClick={onBack}>
+          <FiArrowLeft size={16} /> Back to Profile
         </button>
+        <h1 className="ap-title">certifications</h1>
       </div>
 
-      {/* Cards Grid */}
-      <div className="cert-grid">
+      <div className="cert-grid" style={{ marginTop: '24px' }}>
         {certs.map((cert, i) => (
-          <motion.div
-            key={i}
-            className="cert-card"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.3, delay: i * 0.08 }}
-          >
+          <div key={i} className="cert-card">
             <div className="cert-icon-wrap">
               {cert.image
                 ? <img src={cert.image} alt={cert.title} className="cert-icon-img" />
@@ -52,9 +49,9 @@ export default function Certifications({ onViewAll }) {
             >
               &#8249; VERIFY &#8250;
             </button>
-          </motion.div>
+          </div>
         ))}
       </div>
-    </div>
+    </motion.div>
   );
 }

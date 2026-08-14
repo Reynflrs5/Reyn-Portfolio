@@ -1,203 +1,230 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./Sidebar.css";
 import {
-  FiMoon, FiSun, FiMail, FiMapPin,
-  FiGithub, FiFacebook, FiInstagram,
-  FiPhone, FiTarget,
-  FiFileText, FiDownload, FiX,
-  FiArrowRight, FiShare2
+  FiGithub, FiX, FiFileText, FiArrowUpRight
 } from "react-icons/fi";
-import reynimg from "../../assets/reynimg.png";
 
-export default function Sidebar({ darkMode, setDarkMode }) {
-  const [resumeModal, setResumeModal] = useState(false);
+export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
+  const [activeTab, setActiveTab] = useState("Projects");
+  const [activeVisitors, setActiveVisitors] = useState(0);
+  const navRefs = useRef({});
+  const [pillStyle, setPillStyle] = useState({ top: 0, height: 0, opacity: 0 });
+  const [time, setTime] = useState(new Date());
 
-  const links = {
-    github: "https://github.com/Reynflrs5",
-    facebook: "https://facebook.com/Reyn12345",
-    instagram: "https://instagram.com/reynflrs",
-    email: "mailto:fjashleyrain@gmail.com?subject=Freelance Inquiry&body=Hi Jashley,",
+  // Clock effect
+  useEffect(() => {
+    const timer = setInterval(() => setTime(new Date()), 1000);
+    return () => clearInterval(timer);
+  }, []);
+
+  // Track real active visitors via backend
+  useEffect(() => {
+    // Generate a unique session ID for this browser tab
+    const sessionId = Math.random().toString(36).substring(2, 15);
+
+    const pingBackend = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/ping", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ sessionId })
+        });
+        const data = await res.json();
+        if (data.activeVisitors !== undefined) {
+          setActiveVisitors(data.activeVisitors);
+        }
+      } catch (err) {
+        console.error("Failed to ping visitors:", err);
+      }
+    };
+
+    // Ping immediately, then every 10 seconds
+    pingBackend();
+    const interval = setInterval(pingBackend, 10000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const mainLinks = [
+    { name: "Projects", id: "section-projects" },
+    { name: "Experience", id: "section-experience" },
+    { name: "Stack", id: "section-stack" },
+    { name: "Certifications", id: "section-certifications" },
+  ];
+
+  // Track active section on scroll
+  useEffect(() => {
+    const map = {
+      "section-about": "About",
+      "section-projects": "Projects",
+      "section-experience": "Experience",
+      "section-stack": "Stack",
+      "section-certifications": "Certifications",
+    };
+
+    const observers = [];
+    Object.keys(map).forEach((id) => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      const obs = new IntersectionObserver(
+        ([entry]) => { if (entry.isIntersecting) setActiveTab(map[id]); },
+        { threshold: 0.3 }
+      );
+      obs.observe(el);
+      observers.push(obs);
+    });
+    return () => observers.forEach((o) => o.disconnect());
+  }, []);
+
+  // Move the sliding pill to sit behind the active nav item
+  useEffect(() => {
+    const el = navRefs.current[activeTab];
+    if (el) {
+      setPillStyle({ top: el.offsetTop, height: el.offsetHeight, opacity: 1 });
+    }
+  }, [activeTab]);
+
+  const scrollTo = (id) => {
+    const el = document.getElementById(id);
+    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const open = (url) => window.open(url, "_blank");
-
   return (
-    <aside className={`sb ${darkMode ? "dark" : ""}`}>
+    <>
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="sb-mobile-overlay"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
 
-      {/* Banner */}
-      <div className="sb-banner">
-        <div className="sb-banner-grid" />
-        <div className="sb-banner-glow" />
-        <button
-          className="sb-darkbtn"
-          onClick={() => setDarkMode(!darkMode)}
-          aria-label="Toggle dark mode"
-        >
-          {darkMode ? <FiSun size={13} /> : <FiMoon size={13} />}
-        </button>
-      </div>
-
-      {/* Avatar */}
-      <div className="sb-avatar-wrap">
-        <div className="sb-avatar">
-          <img src={reynimg} alt="Jashley Rain Flores" />
-        </div>
-      </div>
-
-      <div className="sb-body">
-
-        {/* Name & location */}
-        <p className="sb-name">Jashley Rain Flores</p>
-        <p className="sb-loc">
-          <FiMapPin size={12} />
-          Pampanga, Philippines
-        </p>
-
-        {/* Availability */}
-        <div className="sb-avail">
-          <div className="sb-avail-dot-wrap">
-            <div className="sb-avail-dot-ring" />
-            <div className="sb-avail-dot" />
-          </div>
-          <div className="sb-avail-text">
-            <p className="sb-avail-title">Available for freelance</p>
-            <p className="sb-avail-sub">Open to projects &amp; collaborations</p>
-          </div>
-          <FiArrowRight size={13} className="sb-avail-arrow" />
-        </div>
-
-        {/* Primary CTA */}
-        <button
-          className="sb-btn-hire"
-          onClick={() => (window.location.href = links.email)}
-        >
-          <FiMail size={14} />
-          Hire me
-        </button>
-
-        {/* Secondary actions */}
-        <div className="sb-btn-row">
-          <button className="sb-btn-sec" onClick={() => setResumeModal(true)}>
-            <FiFileText size={12} />
-            Resume
-          </button>
-          <button className="sb-btn-sec" onClick={() => open(links.github)}>
-            <FiGithub size={12} />
-            GitHub
-          </button>
-        </div>
-
-        <hr className="sb-divider" />
-
-        {/* Stats */}
-        <div className="sb-stats">
-          <div className="sb-stat">
-            <span className="sb-stat-num">3rd</span>
-            <span className="sb-stat-lbl">year</span>
-          </div>
-          <div className="sb-stat">
-            <span className="sb-stat-num">4</span>
-            <span className="sb-stat-lbl">projects</span>
-          </div>
-          <div className="sb-stat">
-            <span className="sb-stat-num">15</span>
-            <span className="sb-stat-lbl">techs</span>
-          </div>
-        </div>
-
-        {/* Goal */}
-        <div className="sb-section">
-          <p className="sb-section-head">
-            <FiTarget size={12} className="sb-section-icon teal" />
-            Goal
-          </p>
-          <p className="sb-section-body">
-            Become a Full Stack Developer, build scalable web apps, and
-            contribute to tech projects that solve real-world problems.
-          </p>
-        </div>
-
-        <hr className="sb-divider" />
-
-        <hr className="sb-divider" />
-
-        {/* Connect & Contact */}
-        <div className="sb-section">
-          <p className="sb-section-head">
-            <FiShare2 size={12} className="sb-section-icon blue" />
-            Connect
-          </p>
-          <ul className="sb-links">
-            <li className="sb-link-item" onClick={() => open(links.github)}>
-              <span className="sb-link-icon gh">
-                <FiGithub size={13} />
-              </span>
-              GitHub
-            </li>
-            <li className="sb-link-item" onClick={() => open(links.facebook)}>
-              <span className="sb-link-icon fb">
-                <FiFacebook size={13} />
-              </span>
-              Facebook
-            </li>
-            <li className="sb-link-item" onClick={() => open(links.instagram)}>
-              <span className="sb-link-icon ig">
-                <FiInstagram size={13} />
-              </span>
-              Instagram
-            </li>
-            <li className="sb-link-item sb-link-static">
-              <span className="sb-link-icon em">
-                <FiMail size={13} />
-              </span>
-              fjashleyrain@gmail.com
-            </li>
-            <li className="sb-link-item sb-link-static">
-              <span className="sb-link-icon ph">
-                <FiPhone size={13} />
-              </span>
-              +63 936 826 9722
-            </li>
-          </ul>
-        </div>
-
-      </div>
-
-      {/* Resume Modal */}
-      {resumeModal && (
-        <div className="sb-overlay" onClick={() => setResumeModal(false)}>
-          <div
-            className={`sb-modal ${darkMode ? "dark" : ""}`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button className="sb-modal-close" onClick={() => setResumeModal(false)}>
-              <FiX size={12} />
+      <aside className={`new-sidebar ${isMobileMenuOpen ? "mobile-open" : ""}`}>
+        {/* Top Header — name scrolls to About */}
+          <div className="sb-header">
+            <div
+              className="sb-title-wrap sb-title-link"
+              onClick={() => {
+                scrollTo("section-about");
+                setIsMobileMenuOpen(false);
+              }}
+              title="Back to top"
+            >
+              <span className="sb-mark">JR</span>
+              <div className="sb-title-block">
+                <h1 className="sb-title">Jashley Rain</h1>
+                <span className="sb-subtitle">
+                  <span className="sb-dot-available" />
+                  Available for work
+                </span>
+              </div>
+            </div>
+            <button className="sb-close-btn" onClick={() => setIsMobileMenuOpen(false)}>
+              <FiX size={20} />
             </button>
-            <span className="sb-modal-badge">🚀 coming soon</span>
-            <p className="sb-modal-title">Resume</p>
-            <p className="sb-modal-text">
-              My resume is being updated with the latest projects and skills.
-              It will be available for download soon.
-            </p>
-            <div className="sb-modal-actions">
-              <a
-                href="/resume.pdf"
-                download="Jashley_Rain_Flores_Resume.pdf"
-                className="sb-btn-dl"
-              >
-                <FiDownload size={13} />
-                Download resume
-              </a>
+          </div>
+
+          {/* Nav Links */}
+          <nav className="sb-nav-section sb-nav-list">
+            <div
+              className="sb-nav-pill"
+              style={{ top: pillStyle.top, height: pillStyle.height, opacity: pillStyle.opacity }}
+            />
+            {mainLinks.map((link) => (
               <button
-                className="sb-btn-sec sb-btn-full"
-                onClick={() => setResumeModal(false)}
+                key={link.name}
+                ref={(node) => { navRefs.current[link.name] = node; }}
+                className={`sb-nav-item ${activeTab === link.name ? "active" : ""}`}
+                onClick={() => {
+                  setActiveTab(link.name);
+                  scrollTo(link.id);
+                  setIsMobileMenuOpen(false);
+                }}
               >
-                Close
+                <span>{link.name}</span>
+                {activeTab === link.name && <FiArrowUpRight className="sb-nav-arrow" size={13} />}
               </button>
+            ))}
+          </nav>
+
+          {/* Mini Activity Chart */}
+          <div className="sb-activity-wrapper">
+            <span className="sb-activity-label">Activity</span>
+            <div className="sb-activity-graph">
+              {[0, 2, 1, 3, 0, 4, 1, 2, 0, 3, 4, 1].map((level, i) => (
+                <div key={i} className={`sb-activity-square level-${level}`} />
+              ))}
             </div>
           </div>
+
+          {/* GitHub & Resume Buttons */}
+          <div className="sb-links-row">
+            <a
+              href="https://github.com/Reynflrs5"
+              target="_blank"
+              rel="noreferrer"
+              className="sb-chip"
+            >
+              <FiGithub size={14} />
+              <span>GitHub</span>
+            </a>
+            <button className="sb-chip sb-chip-disabled" disabled>
+              <FiFileText size={14} />
+              <span>Resume</span>
+            </button>
+          </div>
+
+          {/* Visitors */}
+          <div className="sb-community">
+            <div className="sb-community-top">
+              <span className="sb-live-badge">
+                <span className="sb-pulse-dot" />
+                Live
+              </span>
+              <span className="sb-viewing-count">
+                {activeVisitors} {activeVisitors === 1 ? "person" : "people"} here
+              </span>
+            </div>
+            <div className="sb-avatars">
+              <div className="sb-avatar-stack">
+                {activeVisitors >= 1 && <img src="https://i.pravatar.cc/150?u=v1" alt="viewer" className="sb-mini-avatar" style={{ zIndex: 3 }} />}
+                {activeVisitors >= 2 && <img src="https://i.pravatar.cc/150?u=v2" alt="viewer" className="sb-mini-avatar" style={{ zIndex: 2 }} />}
+                {activeVisitors >= 3 && <img src="https://i.pravatar.cc/150?u=v3" alt="viewer" className="sb-mini-avatar" style={{ zIndex: 1 }} />}
+                {activeVisitors === 0 && <div className="sb-mini-avatar sb-mini-avatar-empty" />}
+              </div>
+              {activeVisitors > 3 && (
+                <span className="sb-avatar-count">+{activeVisitors - 3}</span>
+              )}
+            </div>
+          </div>
+
+          {/* Location & Time Widget */}
+          <div className="sb-location-widget">
+            <div className="sb-location-dot"></div>
+            <div className="sb-location-text">
+              <span>Manila, PH</span>
+              <span className="sb-time">
+                {time.toLocaleTimeString("en-US", {
+                  timeZone: "Asia/Manila",
+                  hour: "2-digit",
+                  minute: "2-digit",
+                  second: "2-digit",
+                })}
+              </span>
+            </div>
+          </div>
+
+          {/* Bottom Actions */}
+          <div className="sb-footer">
+            <div className="sb-contact-card">
+              <p className="sb-contact-label">For work, collabs & everything else</p>
+              <a href="mailto:fjashleyrain@gmail.com" className="sb-email-link">
+                <span>fjashleyrain@gmail.com</span>
+                <FiArrowUpRight size={14} />
+              </a>
+            </div>
         </div>
-      )}
-    </aside>
+      </aside>
+    </>
   );
 }
