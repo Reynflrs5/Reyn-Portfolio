@@ -29,7 +29,7 @@ export default function LoadingScreen({ onComplete }) {
     }, 70);
 
     return () => clearInterval(typeInterval);
-  }, []);
+  }, [onComplete]);
 
   return (
     <AnimatePresence>

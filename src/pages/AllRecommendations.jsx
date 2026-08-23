@@ -5,15 +5,6 @@ import "./AllRecommendations.css";
 
 const BACKEND = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
-const initials = (name = "") =>
-  name
-    .trim()
-    .split(/\s+/)
-    .slice(0, 2)
-    .map((w) => w[0])
-    .join("")
-    .toUpperCase() || "?";
-
 export default function AllRecommendations({ onBack }) {
   const [entries, setEntries] = useState([]);
   const [loading, setLoading] = useState(true);
