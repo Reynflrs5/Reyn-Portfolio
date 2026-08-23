@@ -1,0 +1,136 @@
+.all-recommendations-page {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.ar-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--chrome-line);
+}
+
+.ar-back-btn {
+  background: transparent;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--chrome-2);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.2s;
+}
+
+.ar-back-btn:hover {
+  color: var(--chrome-1);
+  text-shadow: 0 0 8px var(--chrome-glow);
+}
+
+.ar-title {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 600;
+  color: var(--chrome-1);
+  margin: 0;
+}
+
+.ar-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.ar-loading, .ar-empty {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--chrome-2);
+  font-family: 'DM Sans', sans-serif;
+}
+
+.ar-empty-icon {
+  margin-bottom: 16px;
+  opacity: 0.3;
+}
+
+.ar-item {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-bottom: 1px solid var(--chrome-line);
+  text-decoration: none;
+  align-items: start;
+  transition: all 0.2s;
+}
+
+.ar-item:last-child {
+  border-bottom: none;
+}
+
+.ar-item:hover {
+  background: rgba(232, 232, 234, 0.04);
+  padding-left: 16px;
+  padding-right: 16px;
+  margin-left: -16px;
+  margin-right: -16px;
+  border-radius: 12px;
+}
+
+.ar-left {
+  padding-top: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ar-name {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--chrome-1);
+}
+
+.ar-role {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--chrome-3);
+}
+
+.ar-right {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ar-stars {
+  color: #ffb800;
+  display: flex;
+  gap: 4px;
+}
+
+.ar-desc {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--chrome-2);
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .ar-item {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}

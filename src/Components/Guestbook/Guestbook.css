@@ -1,0 +1,654 @@
+.guestbook-section {
+  padding: 20px 0 60px 0;
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.gb-header {
+  margin-bottom: 30px;
+  padding: 0 20px;
+}
+
+.gb-header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.gb-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--chrome-1);
+  margin: 0;
+}
+
+.gb-all-btn {
+  background: transparent;
+  border: none;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  color: var(--chrome-2);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+  transition: all 0.2s;
+  padding: 0;
+}
+
+.gb-all-btn:hover {
+  color: var(--chrome-1);
+  text-shadow: 0 0 8px var(--chrome-glow);
+}
+
+.gb-subtitle {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--chrome-2);
+  margin: 0;
+}
+
+.gb-container {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+/* ENTRIES */
+.gb-entries-wrapper {
+  position: relative;
+}
+
+.gb-entries {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  overflow-x: auto;
+  padding: 10px 20px 30px 20px;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+}
+
+.gb-entries::-webkit-scrollbar {
+  height: 6px;
+}
+
+.gb-entries::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.gb-entries::-webkit-scrollbar-thumb {
+  background: var(--chrome-line);
+  border-radius: 10px;
+}
+
+/* fade hint that more cards sit off-screen */
+.gb-entries-fade {
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 30px;
+  width: 56px;
+  background: linear-gradient(90deg, transparent, var(--chrome-bg-solid) 92%);
+}
+
+.gb-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  text-align: center;
+  color: var(--chrome-2);
+  font-family: 'DM Sans', sans-serif;
+  padding: 40px 20px;
+  width: 100%;
+  border: 1px dashed var(--chrome-line);
+  border-radius: 16px;
+  margin: 0 20px;
+}
+
+.gb-empty p {
+  margin: 0;
+}
+
+.gb-empty-icon {
+  font-size: 22px;
+  color: var(--chrome-1);
+  opacity: 0.6;
+}
+
+.gb-card {
+  position: relative;
+  background: linear-gradient(180deg, #1a1a1c, #000000);
+  border: 1px solid var(--chrome-line);
+  border-radius: 16px;
+  padding: 24px;
+  min-width: min(320px, 82vw);
+  max-width: min(320px, 82vw);
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease, transform 0.25s ease;
+  opacity: 0;
+  animation: gb-card-in 0.5s ease forwards;
+}
+
+@keyframes gb-card-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.gb-card:hover {
+  border-color: var(--chrome-1);
+  box-shadow: 0 14px 36px rgba(0, 0, 0, 0.28), 0 0 20px var(--chrome-glow);
+  transform: translateY(-4px);
+}
+
+.gb-card-quote {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 48px;
+  line-height: 1;
+  color: var(--chrome-1);
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+.gb-card-stars {
+  color: #ffb800;
+  display: flex;
+  gap: 4px;
+  font-size: 14px;
+}
+
+.gb-card-message {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  color: var(--chrome-2);
+  margin: 0;
+  line-height: 1.6;
+  font-style: italic;
+  flex-grow: 1;
+}
+
+.gb-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 8px;
+  border-top: 1px solid var(--chrome-line);
+  padding-top: 16px;
+}
+
+.gb-card-avatar {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #2a2a2d, #101012);
+  border: 1px solid var(--chrome-line);
+  color: var(--chrome-1);
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+}
+
+.gb-card-identity {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+
+.gb-card-name {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--chrome-1);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.gb-card-role {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: #a0a0a5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* FORM WRAPPER */
+.gb-form-wrapper {
+  padding: 0 20px;
+}
+
+.gb-form-title {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 16px;
+  color: var(--chrome-1);
+  margin: 0 0 16px 0;
+}
+
+.gb-form {
+  background: transparent;
+  border: 1px dashed var(--chrome-line);
+  border-radius: 16px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.gb-error {
+  color: #ff5c5c;
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 92, 92, 0.1);
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+
+/* Rating Input */
+.gb-rating-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 4px;
+}
+
+.gb-rating-label {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  color: var(--chrome-2);
+}
+
+.gb-rating-stars {
+  display: flex;
+  gap: 4px;
+}
+
+.gb-star-btn {
+  color: #444;
+  cursor: pointer;
+  transition: transform 0.2s, color 0.2s;
+}
+
+.gb-star-btn:hover {
+  transform: scale(1.15);
+}
+
+.gb-star-btn.active {
+  color: #ffb800;
+}
+
+.gb-input-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+@media (max-width: 600px) {
+  .gb-input-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Floating-label inputs */
+.gb-input-group {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.gb-icon {
+  position: absolute;
+  left: 16px;
+  color: #a0a0a5;
+  font-size: 16px;
+  transition: color 0.2s ease;
+  pointer-events: none;
+}
+
+.gb-icon.top-icon {
+  top: 16px;
+}
+
+.gb-input-group input,
+.gb-input-group textarea {
+  width: 100%;
+  background: var(--chrome-bg-solid);
+  border: 1px solid var(--chrome-line);
+  border-radius: 10px;
+  padding: 20px 14px 8px 44px;
+  color: var(--chrome-1);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.gb-input-group textarea {
+  resize: vertical;
+  min-height: 100px;
+  padding-top: 24px;
+}
+
+.gb-label {
+  position: absolute;
+  left: 44px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #a0a0a5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  pointer-events: none;
+  transition: top 0.18s ease, font-size 0.18s ease, transform 0.18s ease, color 0.18s ease;
+}
+
+.gb-textarea-group .gb-label {
+  top: 26px;
+}
+
+/* Float the label up when the field has content or is focused */
+.gb-input-group input:focus+.gb-label,
+.gb-input-group input:not(:placeholder-shown)+.gb-label,
+.gb-input-group textarea:focus+.gb-label,
+.gb-input-group textarea:not(:placeholder-shown)+.gb-label {
+  top: 10px;
+  transform: translateY(0);
+  font-size: 11px;
+  color: var(--chrome-1);
+}
+
+.gb-textarea-group textarea:focus+.gb-label,
+.gb-textarea-group textarea:not(:placeholder-shown)+.gb-label {
+  top: 8px;
+}
+
+.gb-input-group input:focus,
+.gb-input-group textarea:focus {
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
+}
+
+.gb-input-group input:focus~.gb-icon,
+.gb-input-group textarea:focus~.gb-icon {
+  color: var(--chrome-1);
+}
+
+.gb-char-count {
+  position: absolute;
+  right: 14px;
+  bottom: 8px;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 11px;
+  color: #6b6b70;
+}
+
+/* Select dropdown */
+.gb-select {
+  width: 100%;
+  background: var(--chrome-bg-solid);
+  border: 1px solid var(--chrome-line);
+  border-radius: 10px;
+  padding: 14px 14px 14px 44px;
+  color: var(--chrome-1);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  -webkit-appearance: none;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.gb-select:focus {
+  border-color: var(--chrome-1);
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+}
+
+.gb-select option {
+  background: #1a1a1c;
+  color: var(--chrome-1);
+}
+
+/* Suggestion chips */
+.gb-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.gb-suggestion-chip {
+  background: transparent;
+  border: 1px solid var(--chrome-line);
+  border-radius: 20px;
+  padding: 6px 14px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13px;
+  color: var(--chrome-2);
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.gb-suggestion-chip:hover {
+  border-color: var(--chrome-1);
+  color: var(--chrome-1);
+  background: rgba(255,255,255,0.05);
+}
+
+.gb-suggestion-chip.active {
+  background: var(--chrome-1);
+  color: var(--chrome-bg-solid);
+  border-color: var(--chrome-1);
+  font-weight: 500;
+}
+
+.gb-submit-btn {
+  align-self: flex-end;
+  background: linear-gradient(180deg, #e8e8ea, #c7c9cd);
+  color: var(--chrome-bg-solid);
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.gb-submit-btn:hover:not(:disabled) {
+  box-shadow: 0 0 15px var(--chrome-glow);
+  transform: translateY(-2px);
+}
+
+.gb-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.gb-submit-btn.is-success {
+  background: linear-gradient(180deg, #b8f0c8, #8fe0a8);
+}
+
+.gb-submit-btn:focus-visible,
+.gb-input-group input:focus-visible,
+.gb-input-group textarea:focus-visible {
+  outline: 2px solid var(--chrome-1);
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .gb-card,
+  .gb-submit-btn,
+  .gb-label,
+  .gb-icon {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* ============ RESPONSIVE (TABLET) ============ */
+@media (max-width: 768px) {
+  .guestbook-section {
+    padding: 16px 0 48px 0;
+  }
+
+  .gb-header {
+    padding: 0 16px;
+  }
+
+  .gb-entries {
+    padding: 8px 16px 26px 16px;
+  }
+
+  .gb-empty {
+    margin: 0 16px;
+  }
+
+  .gb-form-wrapper {
+    padding: 0 16px;
+  }
+}
+
+/* ============ RESPONSIVE (MOBILE / CP) ============ */
+@media (max-width: 480px) {
+  .gb-title {
+    font-size: 15px;
+  }
+
+  .gb-subtitle {
+    font-size: 13px;
+  }
+
+  .gb-container {
+    gap: 28px;
+  }
+
+  /* one vouch per view, snaps edge-to-edge instead of a peeking carousel */
+  .gb-entries {
+    padding: 8px 16px 22px 16px;
+    gap: 14px;
+  }
+
+  .gb-card {
+    min-width: calc(100vw - 32px);
+    max-width: calc(100vw - 32px);
+    padding: 20px;
+    gap: 12px;
+  }
+
+  .gb-card-quote {
+    font-size: 38px;
+    top: 8px;
+    right: 14px;
+  }
+
+  .gb-card-message {
+    font-size: 14px;
+  }
+
+  .gb-entries-fade {
+    width: 28px;
+    bottom: 22px;
+  }
+
+  .gb-empty {
+    margin: 0 16px;
+    padding: 32px 16px;
+  }
+
+  .gb-form {
+    padding: 18px;
+    gap: 14px;
+    border-radius: 14px;
+  }
+
+  .gb-form-title {
+    font-size: 15px;
+  }
+
+  .gb-input-row {
+    gap: 12px;
+  }
+
+  .gb-input-group input,
+  .gb-input-group textarea {
+    font-size: 16px;
+    /* prevents iOS auto-zoom on focus */
+    padding: 19px 12px 7px 40px;
+  }
+
+  .gb-input-group textarea {
+    padding-top: 22px;
+  }
+
+  .gb-icon {
+    left: 12px;
+    font-size: 15px;
+  }
+
+  .gb-label {
+    left: 40px;
+    font-size: 13px;
+  }
+
+  .gb-char-count {
+    right: 12px;
+  }
+
+  .gb-submit-btn {
+    align-self: stretch;
+    justify-content: center;
+    padding: 13px 20px;
+  }
+}
+
+/* ============ RESPONSIVE (SMALL PHONES) ============ */
+@media (max-width: 360px) {
+  .gb-card {
+    padding: 16px;
+  }
+
+  .gb-card-avatar {
+    width: 30px;
+    height: 30px;
+    font-size: 11px;
+  }
+
+  .gb-card-name {
+    font-size: 14px;
+  }
+}

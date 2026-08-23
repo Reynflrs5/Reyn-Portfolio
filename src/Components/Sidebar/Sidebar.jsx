@@ -4,6 +4,8 @@ import {
   FiGithub, FiX, FiFileText, FiArrowUpRight
 } from "react-icons/fi";
 
+const BACKEND = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
+
 export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
   const [activeTab, setActiveTab] = useState("Projects");
   const [activeVisitors, setActiveVisitors] = useState(0);
@@ -24,7 +26,7 @@ export default function Sidebar({ isMobileMenuOpen, setIsMobileMenuOpen }) {
 
     const pingBackend = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/ping", {
+        const res = await fetch(`${BACKEND}/api/ping`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({ sessionId })

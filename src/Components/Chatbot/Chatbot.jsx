@@ -1,7 +1,9 @@
 import { useState, useRef, useEffect } from "react";
-import "./Chatbot.css";
 import reynImg from "../../assets/reynimg.png";
 import aiIcon from "../../assets/ai-icon (1).png";
+import "./Chatbot.css";
+
+const BACKEND = process.env.REACT_APP_BACKEND_URL || "http://localhost:5000";
 
 // ── Neural AI Icon — custom SVG brain/network ──────────────────
 const AiNeuralIcon = ({ size = 26 }) => (
@@ -132,7 +134,7 @@ function Chatbot() {
     setIsLoading(true);
 
     try {
-      const res = await fetch("http://localhost:5000/chat", {
+      const res = await fetch(`${BACKEND}/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: msgText }),
