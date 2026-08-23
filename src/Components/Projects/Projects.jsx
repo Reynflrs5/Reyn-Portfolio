@@ -9,9 +9,7 @@ import rentgo3 from "../../assets/rentgo3.jpg";
 import lifeline1 from "../../assets/lifeline-web1.png";
 import lifeline2 from "../../assets/lifeline-web2.png";
 import lifeline3 from "../../assets/lifeline-web3.png";
-import dmc1 from "../../assets/dmc-system1.jpg";
-import dmc2 from "../../assets/dmc-system2.jpg";
-import dmc3 from "../../assets/dmc-system3.jpg";
+
 
 const projects = [
   {
@@ -70,28 +68,7 @@ const projects = [
     image: lifeline1,
     images: [lifeline1, lifeline2, lifeline3],
   },
-  {
-    name: "DMC Property System",
-    desc: "An internal property management system for DMC campus equipment.",
-    longDesc: "The DMC Property Management System is a desktop application developed using VB.NET and MySQL to help manage and monitor university-owned properties at the Mexico Campus. The system digitizes the traditional manual process of recording, borrowing, returning, and reporting damaged school properties. It uses barcode technology to make item identification and tracking faster and more accurate. Authorized staff can register new items, monitor inventory, process borrowing and returning transactions, and report damaged equipment — with every transaction recorded for complete history and status tracking.",
-    features: [
-      "Login & User Registration – Secure access for authorized staff",
-      "Dashboard – View total, available, borrowed, returned, and damaged items",
-      "Inventory Management – Add, edit, delete, search, and filter properties",
-      "Barcode System – Generate and scan barcodes for easy item tracking",
-      "Borrow & Return – Record and monitor borrowed and returned items",
-      "Damage Reporting – Report and manage damaged properties",
-      "Transaction Logs – Keep records of all borrowing, returning, and damage activities",
-      "Department Filtering – View items according to their assigned department",
-    ],
-    tags: ["INTERNAL SYSTEM", "DESKTOP"],
-    tech: "VB.NET, MySQL",
-    status: "internal",
-    link: "#",
-    github: "https://github.com/Reynflrs5",
-    image: dmc1,
-    images: [dmc1, dmc2, dmc3],
-  },
+
 ];
 
 export default function Projects({ onViewAll, onViewDetails }) {
