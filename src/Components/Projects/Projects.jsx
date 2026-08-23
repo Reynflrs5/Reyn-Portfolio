@@ -31,7 +31,7 @@ const projects = [
   {
     name: "RentGo",
     desc: "A full-stack car rental booking system for mobile and web.",
-    longDesc: "Car Rental Management System is a digital platform designed to make vehicle renting faster, easier, and more organized. Instead of relying on manual reservations, phone calls, or messaging, users can register, browse available cars, select their preferred vehicle, make a reservation, choose a payment method, and receive booking confirmation online. For administrators or car owners, the system provides centralized management of vehicles, users, bookings, payments, and reports.",
+    longDesc: "Developed as a group project during my 3rd year for our Application Development subject, the Car Rental Management System is a digital platform designed to make vehicle renting faster, easier, and more organized. Instead of relying on manual reservations, phone calls, or messaging, users can register, browse available cars, select their preferred vehicle, make a reservation, choose a payment method, and receive booking confirmation online. For administrators or car owners, the system provides centralized management of vehicles, users, bookings, payments, and reports.",
     features: [
       "User Registration & Login – Secure account access for renters",
       "Car Browsing – View available vehicles and their details",
@@ -55,6 +55,7 @@ const projects = [
   {
     name: "Lifeline Promotion",
     desc: "A responsive web promotion and marketing platform designed to convert visitors with fast-loading, mobile-first landing pages.",
+    longDesc: "Built during my 2nd year for our Web Development subject, Lifeline Promotion is a responsive web promotion and marketing platform designed to convert visitors with fast-loading, mobile-first landing pages.",
     features: [
       "Custom responsive landing pages",
       "Optimized for speed and mobile-first browsing",
