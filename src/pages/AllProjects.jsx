@@ -4,12 +4,11 @@ import "./AllProjects.css";
 
 import gwa1 from "../assets/gwa1.png";
 
-import lifeline1 from "../assets/lifeline-web1.png";
-import lifeline2 from "../assets/lifeline-web2.png";
-import lifeline3 from "../assets/lifeline-web3.png";
+
 import rentgo1 from "../assets/rentgo1.jpg";
 import rentgo2 from "../assets/rentgo2.jpg";
 import rentgo3 from "../assets/rentgo3.jpg";
+import cssLab1 from "../assets/css_lab1.jpg";
 
 const projects = [
   {
@@ -48,22 +47,22 @@ const projects = [
     github: "https://github.com/Reynflrs5",
     images: [rentgo1, rentgo2, rentgo3],
   },
-  {
-    name: "Lifeline Promotion",
-    desc: "A responsive web promotion and marketing platform designed to convert visitors with fast-loading, mobile-first landing pages.",
-    longDesc: "Built during my 2nd year for our Web Development subject, Lifeline Promotion is a responsive web promotion and marketing platform designed to convert visitors with fast-loading, mobile-first landing pages.",
-    features: [
-      "Custom responsive landing pages",
-      "Optimized for speed and mobile-first browsing",
-      "Marketing-focused layout and CTAs",
-    ],
-    tags: ["LANDING PAGE", "MARKETING"],
-    tech: "HTML, CSS, JS",
-    link: "#",
-    github: "https://github.com/Reynflrs5",
-    images: [lifeline1, lifeline2, lifeline3],
-  },
 
+  {
+    name: "CSS_LAB Reference",
+    desc: "Technical study reference for Computer Systems Servicing (CSS) NC II covering hardware assembly, PC parts schematic, networking, and troubleshooting.",
+    features: [
+      "Hardware assembly guide",
+      "Interactive PC parts schematic",
+      "Networking configuration reference",
+      "System diagnostics & troubleshooting steps"
+    ],
+    tags: ["STUDY REFERENCE", "WEB APP"],
+    tech: "React, Vite",
+    link: "https://learnnetserv.vercel.app/",
+    github: "https://github.com/Reynflrs5",
+    images: [cssLab1],
+  },
 ];
 
 export default function AllProjects({ onBack, onViewDetails }) {
