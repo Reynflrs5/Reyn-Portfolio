@@ -2,7 +2,7 @@ import gwa1 from "../assets/gwa1.png";
 import rentgo1 from "../assets/rentgo1.jpg";
 import rentgo2 from "../assets/rentgo2.jpg";
 import rentgo3 from "../assets/rentgo3.jpg";
-import cssLab1 from "../assets/css_lab1.jpg";
+import cssLab1 from "../assets/cssnet.png";
 
 export const projectsData = [
   {

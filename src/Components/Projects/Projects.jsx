@@ -8,6 +8,8 @@ const projects = projectsData.slice(0, 3);
 
 export default function Projects({ onViewAll, onViewDetails }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
 
   const nextProject = () => {
     setActiveIndex((prev) => (prev + 1) % projects.length);
@@ -15,6 +17,31 @@ export default function Projects({ onViewAll, onViewDetails }) {
 
   const prevProject = () => {
     setActiveIndex((prev) => (prev - 1 + projects.length) % projects.length);
+  };
+
+  const handleTouchStart = (e) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (!touchStart || !touchEnd) return;
+    const distance = touchStart - touchEnd;
+    const isLeftSwipe = distance > 50;
+    const isRightSwipe = distance < -50;
+
+    if (isLeftSwipe) {
+      nextProject();
+    }
+    if (isRightSwipe) {
+      prevProject();
+    }
+
+    setTouchStart(0);
+    setTouchEnd(0);
   };
 
   return (
@@ -26,7 +53,12 @@ export default function Projects({ onViewAll, onViewDetails }) {
         </button>
       </div>
 
-      <div className="projects-carousel-container">
+      <div 
+        className="projects-carousel-container"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         {projects.map((project, index) => {
           // Determine relative position
           let diff = index - activeIndex;
@@ -39,75 +71,66 @@ export default function Projects({ onViewAll, onViewDetails }) {
           const isLeft = diff === -1;
           const isRight = diff === 1;
 
-          let transform = "translateX(-50%) translateY(-50%)";
-          let zIndex = 1;
-          let opacity = 1;
+          let positionClass = "";
 
           if (isCenter) {
-            transform = "translateX(-50%) translateY(-50%) scale(1) rotate(0deg)";
-            zIndex = 3;
+            positionClass = "pos-center";
           } else if (isLeft) {
-            transform = "translateX(-110%) translateY(-40%) scale(0.85) rotate(-8deg)";
-            zIndex = 2;
-            opacity = 0.7;
+            positionClass = "pos-left";
           } else if (isRight) {
-            transform = "translateX(10%) translateY(-40%) scale(0.85) rotate(8deg)";
-            zIndex = 2;
-            opacity = 0.7;
+            positionClass = "pos-right";
           }
 
           return (
             <div
               key={project.name}
-              className={`project-card ${isCenter ? "active" : ""}`}
-              style={{
-                transform,
-                zIndex,
-                opacity,
-              }}
+              className={`project-card ${isCenter ? "active" : ""} ${positionClass}`}
               onClick={() => {
                 if (isLeft) prevProject();
                 if (isRight) nextProject();
               }}
             >
-              <div className="project-tags">
-                {project.tags.map((tag, i) => (
-                  <span key={i} className="project-tag">
-                    {i === 0 ? <FiLayers size={10} style={{ marginRight: 4 }} /> : null}
-                    {tag}
-                  </span>
-                ))}
-              </div>
-
-              <div className="project-main">
-                <div className="project-image">
-                  <img src={project.image} alt={project.name} />
+              <div className="card-glow"></div>
+              <div className="card-content">
+                <div className="project-image-wrapper">
+                  <img src={project.image} alt={project.name} className="project-image" />
+                  <div className="project-overlay">
+                    <div className="project-tags">
+                      {project.tags.map((tag, i) => (
+                        <span key={i} className="modern-tag">
+                          {i === 0 ? <FiLayers size={10} style={{ marginRight: 4 }} /> : null}
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
-                <div className="project-info">
+
+                <div className="project-details">
                   <h3 className="project-name">{project.name}</h3>
                   <p className="project-desc">{project.desc}</p>
                 </div>
-              </div>
 
-              <div className="project-actions">
-                {project.link !== "#" ? (
-                  <a href={project.link} className="project-btn btn-dark" target="_blank" rel="noreferrer">
-                    Live Site <FiExternalLink size={14} />
+                <div className="project-actions">
+                  {project.link !== "#" ? (
+                    <a href={project.link} className="modern-btn primary" target="_blank" rel="noreferrer">
+                      Live Site <FiExternalLink size={14} />
+                    </a>
+                  ) : (
+                    <button 
+                      className="modern-btn primary" 
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        onViewDetails(project);
+                      }}
+                    >
+                      View Details <FiArrowRight size={14} />
+                    </button>
+                  )}
+                  <a href={project.github} className="modern-btn secondary" target="_blank" rel="noreferrer">
+                    GitHub <FiGithub size={14} />
                   </a>
-                ) : (
-                  <button 
-                    className="project-btn btn-dark" 
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      onViewDetails(project);
-                    }}
-                  >
-                    View Details <FiArrowRight size={14} />
-                  </button>
-                )}
-                <a href={project.github} className="project-btn btn-outline" target="_blank" rel="noreferrer">
-                  GitHub <FiGithub size={14} />
-                </a>
+                </div>
               </div>
             </div>
           );
