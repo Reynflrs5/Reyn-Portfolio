@@ -136,6 +136,19 @@ export default function Projects({ onViewAll, onViewDetails }) {
           );
         })}
       </div>
+
+      <div className="projects-indicators">
+        <div className="swipe-hint">← Swipe to explore →</div>
+        <div className="pagination-dots">
+          {projects.map((_, index) => (
+            <div 
+              key={index} 
+              className={`dot ${index === activeIndex ? "active" : ""}`}
+              onClick={() => setActiveIndex(index)}
+            />
+          ))}
+        </div>
+      </div>
     </div>
   );
 }

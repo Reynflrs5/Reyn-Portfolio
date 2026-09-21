@@ -264,6 +264,50 @@
   opacity: 0.5;
 }
 
+.projects-indicators {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.swipe-hint {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  color: var(--chrome-3);
+  opacity: 0.6;
+  letter-spacing: 0.5px;
+  display: none;
+}
+
+.pagination-dots {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pagination-dots .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--chrome-3);
+  opacity: 0.3;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.pagination-dots .dot:hover {
+  opacity: 0.6;
+}
+
+.pagination-dots .dot.active {
+  width: 24px;
+  border-radius: 4px;
+  background: var(--chrome-1);
+  opacity: 1;
+  box-shadow: 0 0 10px var(--chrome-glow);
+}
 @media (max-width: 900px) {
   .pos-left {
     transform: translateX(-95%) translateY(-45%) scale(0.8) rotate(-3deg) perspective(1000px) rotateY(10deg);
@@ -287,6 +331,10 @@
   .pos-right {
     transform: translateX(-20%) translateY(-45%) scale(0.75) rotate(2deg);
     opacity: 0.3;
+  }
+  
+  .swipe-hint {
+    display: block;
   }
 }
 
